@@ -1,0 +1,472 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D228545B18D315A500EFFE31 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D228545A18D315A500EFFE31 /* Foundation.framework */; };
+		D228545D18D315A500EFFE31 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D228545C18D315A500EFFE31 /* CoreGraphics.framework */; };
+		D228545F18D315A500EFFE31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D228545E18D315A500EFFE31 /* UIKit.framework */; };
+		D228546518D315A500EFFE31 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D228546318D315A500EFFE31 /* InfoPlist.strings */; };
+		D228546718D315A500EFFE31 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D228546618D315A500EFFE31 /* main.m */; };
+		D228546B18D315A500EFFE31 /* VBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D228546A18D315A500EFFE31 /* VBAppDelegate.m */; };
+		D228546E18D315A500EFFE31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D228546C18D315A500EFFE31 /* Main.storyboard */; };
+		D228547118D315A500EFFE31 /* VBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D228547018D315A500EFFE31 /* VBViewController.m */; };
+		D228547318D315A500EFFE31 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D228547218D315A500EFFE31 /* Images.xcassets */; };
+		D228547A18D315A500EFFE31 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D228547918D315A500EFFE31 /* XCTest.framework */; };
+		D228547B18D315A500EFFE31 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D228545A18D315A500EFFE31 /* Foundation.framework */; };
+		D228547C18D315A500EFFE31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D228545E18D315A500EFFE31 /* UIKit.framework */; };
+		D228548418D315A500EFFE31 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D228548218D315A500EFFE31 /* InfoPlist.strings */; };
+		D228548618D315A500EFFE31 /* Selfy_dayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D228548518D315A500EFFE31 /* Selfy_dayTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D228547D18D315A500EFFE31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D228544F18D315A500EFFE31 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D228545618D315A500EFFE31;
+			remoteInfo = "Selfy day";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D228545718D315A500EFFE31 /* Selfy day.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Selfy day.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D228545A18D315A500EFFE31 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D228545C18D315A500EFFE31 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D228545E18D315A500EFFE31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D228546218D315A500EFFE31 /* Selfy day-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Selfy day-Info.plist"; sourceTree = "<group>"; };
+		D228546418D315A500EFFE31 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D228546618D315A500EFFE31 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D228546818D315A500EFFE31 /* Selfy day-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Selfy day-Prefix.pch"; sourceTree = "<group>"; };
+		D228546918D315A500EFFE31 /* VBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VBAppDelegate.h; sourceTree = "<group>"; };
+		D228546A18D315A500EFFE31 /* VBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VBAppDelegate.m; sourceTree = "<group>"; };
+		D228546D18D315A500EFFE31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D228546F18D315A500EFFE31 /* VBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VBViewController.h; sourceTree = "<group>"; };
+		D228547018D315A500EFFE31 /* VBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VBViewController.m; sourceTree = "<group>"; };
+		D228547218D315A500EFFE31 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D228547818D315A500EFFE31 /* Selfy dayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Selfy dayTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D228547918D315A500EFFE31 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D228548118D315A500EFFE31 /* Selfy dayTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Selfy dayTests-Info.plist"; sourceTree = "<group>"; };
+		D228548318D315A500EFFE31 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D228548518D315A500EFFE31 /* Selfy_dayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Selfy_dayTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D228545418D315A500EFFE31 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D228545D18D315A500EFFE31 /* CoreGraphics.framework in Frameworks */,
+				D228545F18D315A500EFFE31 /* UIKit.framework in Frameworks */,
+				D228545B18D315A500EFFE31 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D228547518D315A500EFFE31 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D228547A18D315A500EFFE31 /* XCTest.framework in Frameworks */,
+				D228547C18D315A500EFFE31 /* UIKit.framework in Frameworks */,
+				D228547B18D315A500EFFE31 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D228544E18D315A500EFFE31 = {
+			isa = PBXGroup;
+			children = (
+				D228546018D315A500EFFE31 /* Selfy day */,
+				D228547F18D315A500EFFE31 /* Selfy dayTests */,
+				D228545918D315A500EFFE31 /* Frameworks */,
+				D228545818D315A500EFFE31 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D228545818D315A500EFFE31 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D228545718D315A500EFFE31 /* Selfy day.app */,
+				D228547818D315A500EFFE31 /* Selfy dayTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D228545918D315A500EFFE31 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D228545A18D315A500EFFE31 /* Foundation.framework */,
+				D228545C18D315A500EFFE31 /* CoreGraphics.framework */,
+				D228545E18D315A500EFFE31 /* UIKit.framework */,
+				D228547918D315A500EFFE31 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D228546018D315A500EFFE31 /* Selfy day */ = {
+			isa = PBXGroup;
+			children = (
+				D228546918D315A500EFFE31 /* VBAppDelegate.h */,
+				D228546A18D315A500EFFE31 /* VBAppDelegate.m */,
+				D228546C18D315A500EFFE31 /* Main.storyboard */,
+				D228546F18D315A500EFFE31 /* VBViewController.h */,
+				D228547018D315A500EFFE31 /* VBViewController.m */,
+				D228547218D315A500EFFE31 /* Images.xcassets */,
+				D228546118D315A500EFFE31 /* Supporting Files */,
+			);
+			path = "Selfy day";
+			sourceTree = "<group>";
+		};
+		D228546118D315A500EFFE31 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D228546218D315A500EFFE31 /* Selfy day-Info.plist */,
+				D228546318D315A500EFFE31 /* InfoPlist.strings */,
+				D228546618D315A500EFFE31 /* main.m */,
+				D228546818D315A500EFFE31 /* Selfy day-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D228547F18D315A500EFFE31 /* Selfy dayTests */ = {
+			isa = PBXGroup;
+			children = (
+				D228548518D315A500EFFE31 /* Selfy_dayTests.m */,
+				D228548018D315A500EFFE31 /* Supporting Files */,
+			);
+			path = "Selfy dayTests";
+			sourceTree = "<group>";
+		};
+		D228548018D315A500EFFE31 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D228548118D315A500EFFE31 /* Selfy dayTests-Info.plist */,
+				D228548218D315A500EFFE31 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D228545618D315A500EFFE31 /* Selfy day */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D228548918D315A500EFFE31 /* Build configuration list for PBXNativeTarget "Selfy day" */;
+			buildPhases = (
+				D228545318D315A500EFFE31 /* Sources */,
+				D228545418D315A500EFFE31 /* Frameworks */,
+				D228545518D315A500EFFE31 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Selfy day";
+			productName = "Selfy day";
+			productReference = D228545718D315A500EFFE31 /* Selfy day.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D228547718D315A500EFFE31 /* Selfy dayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D228548C18D315A500EFFE31 /* Build configuration list for PBXNativeTarget "Selfy dayTests" */;
+			buildPhases = (
+				D228547418D315A500EFFE31 /* Sources */,
+				D228547518D315A500EFFE31 /* Frameworks */,
+				D228547618D315A500EFFE31 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D228547E18D315A500EFFE31 /* PBXTargetDependency */,
+			);
+			name = "Selfy dayTests";
+			productName = "Selfy dayTests";
+			productReference = D228547818D315A500EFFE31 /* Selfy dayTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D228544F18D315A500EFFE31 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = VB;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Volodymyr Boichentsov";
+				TargetAttributes = {
+					D228547718D315A500EFFE31 = {
+						TestTargetID = D228545618D315A500EFFE31;
+					};
+				};
+			};
+			buildConfigurationList = D228545218D315A500EFFE31 /* Build configuration list for PBXProject "Selfy day" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D228544E18D315A500EFFE31;
+			productRefGroup = D228545818D315A500EFFE31 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D228545618D315A500EFFE31 /* Selfy day */,
+				D228547718D315A500EFFE31 /* Selfy dayTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D228545518D315A500EFFE31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D228547318D315A500EFFE31 /* Images.xcassets in Resources */,
+				D228546518D315A500EFFE31 /* InfoPlist.strings in Resources */,
+				D228546E18D315A500EFFE31 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D228547618D315A500EFFE31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D228548418D315A500EFFE31 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D228545318D315A500EFFE31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D228546B18D315A500EFFE31 /* VBAppDelegate.m in Sources */,
+				D228547118D315A500EFFE31 /* VBViewController.m in Sources */,
+				D228546718D315A500EFFE31 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D228547418D315A500EFFE31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D228548618D315A500EFFE31 /* Selfy_dayTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D228547E18D315A500EFFE31 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D228545618D315A500EFFE31 /* Selfy day */;
+			targetProxy = D228547D18D315A500EFFE31 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D228546318D315A500EFFE31 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D228546418D315A500EFFE31 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D228546C18D315A500EFFE31 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D228546D18D315A500EFFE31 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D228548218D315A500EFFE31 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D228548318D315A500EFFE31 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D228548718D315A500EFFE31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D228548818D315A500EFFE31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D228548A18D315A500EFFE31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Selfy day/Selfy day-Prefix.pch";
+				INFOPLIST_FILE = "Selfy day/Selfy day-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D228548B18D315A500EFFE31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Selfy day/Selfy day-Prefix.pch";
+				INFOPLIST_FILE = "Selfy day/Selfy day-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D228548D18D315A500EFFE31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Selfy day.app/Selfy day";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Selfy day/Selfy day-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Selfy dayTests/Selfy dayTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D228548E18D315A500EFFE31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Selfy day.app/Selfy day";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Selfy day/Selfy day-Prefix.pch";
+				INFOPLIST_FILE = "Selfy dayTests/Selfy dayTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D228545218D315A500EFFE31 /* Build configuration list for PBXProject "Selfy day" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D228548718D315A500EFFE31 /* Debug */,
+				D228548818D315A500EFFE31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D228548918D315A500EFFE31 /* Build configuration list for PBXNativeTarget "Selfy day" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D228548A18D315A500EFFE31 /* Debug */,
+				D228548B18D315A500EFFE31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D228548C18D315A500EFFE31 /* Build configuration list for PBXNativeTarget "Selfy dayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D228548D18D315A500EFFE31 /* Debug */,
+				D228548E18D315A500EFFE31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D228544F18D315A500EFFE31 /* Project object */;
+}
