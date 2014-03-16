@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CTAssetsPickerController.h"
 
-@interface VBViewController : UIViewController
+@interface VBViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, CTAssetsPickerControllerDelegate>
+
+
+@property (nonatomic, weak) IBOutlet UIButton *takePhoto;
+
+- (IBAction) settings:(id)sender;
+
+- (IBAction) takePhoto:(id)sender;
 
 @end

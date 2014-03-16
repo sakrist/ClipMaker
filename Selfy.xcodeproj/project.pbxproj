@@ -21,6 +21,13 @@
 		D228547C18D315A500EFFE31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D228545E18D315A500EFFE31 /* UIKit.framework */; };
 		D228548418D315A500EFFE31 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D228548218D315A500EFFE31 /* InfoPlist.strings */; };
 		D228548618D315A500EFFE31 /* Selfy_dayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D228548518D315A500EFFE31 /* Selfy_dayTests.m */; };
+		D228549018D339FE00EFFE31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D228548F18D339FE00EFFE31 /* QuartzCore.framework */; };
+		D228549318D33CC600EFFE31 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = D228549218D33CC600EFFE31 /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
+		D228549518D33D4000EFFE31 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D228549418D33D4000EFFE31 /* AssetsLibrary.framework */; };
+		D228549718D33D8900EFFE31 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D228549618D33D8900EFFE31 /* MobileCoreServices.framework */; };
+		D293EBAD18D4A38C002F952B /* CTAssetsPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D293EBAC18D4A38C002F952B /* CTAssetsPickerController.m */; };
+		D293EBB118D5C6DF002F952B /* VBSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D293EBAF18D5C6DF002F952B /* VBSettingViewController.m */; };
+		D293EBB518D5CCB0002F952B /* VBSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D293EBB418D5CCB0002F952B /* VBSettingViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,25 +41,35 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D228545718D315A500EFFE31 /* Selfy day.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Selfy day.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D228545718D315A500EFFE31 /* Selfy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Selfy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D228545A18D315A500EFFE31 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D228545C18D315A500EFFE31 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D228545E18D315A500EFFE31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		D228546218D315A500EFFE31 /* Selfy day-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Selfy day-Info.plist"; sourceTree = "<group>"; };
+		D228546218D315A500EFFE31 /* Selfy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Selfy-Info.plist"; sourceTree = "<group>"; };
 		D228546418D315A500EFFE31 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D228546618D315A500EFFE31 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D228546818D315A500EFFE31 /* Selfy day-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Selfy day-Prefix.pch"; sourceTree = "<group>"; };
+		D228546818D315A500EFFE31 /* Selfy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Selfy-Prefix.pch"; sourceTree = "<group>"; };
 		D228546918D315A500EFFE31 /* VBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VBAppDelegate.h; sourceTree = "<group>"; };
 		D228546A18D315A500EFFE31 /* VBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VBAppDelegate.m; sourceTree = "<group>"; };
 		D228546D18D315A500EFFE31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D228546F18D315A500EFFE31 /* VBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VBViewController.h; sourceTree = "<group>"; };
 		D228547018D315A500EFFE31 /* VBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VBViewController.m; sourceTree = "<group>"; };
 		D228547218D315A500EFFE31 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D228547818D315A500EFFE31 /* Selfy dayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Selfy dayTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D228547818D315A500EFFE31 /* SelfyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SelfyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D228547918D315A500EFFE31 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		D228548118D315A500EFFE31 /* Selfy dayTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Selfy dayTests-Info.plist"; sourceTree = "<group>"; };
+		D228548118D315A500EFFE31 /* SelfyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SelfyTests-Info.plist"; sourceTree = "<group>"; };
 		D228548318D315A500EFFE31 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D228548518D315A500EFFE31 /* Selfy_dayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Selfy_dayTests.m; sourceTree = "<group>"; };
+		D228548F18D339FE00EFFE31 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D228549118D33CC600EFFE31 /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
+		D228549218D33CC600EFFE31 /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
+		D228549418D33D4000EFFE31 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		D228549618D33D8900EFFE31 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		D293EBAB18D4A38C002F952B /* CTAssetsPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTAssetsPickerController.h; sourceTree = "<group>"; };
+		D293EBAC18D4A38C002F952B /* CTAssetsPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAssetsPickerController.m; sourceTree = "<group>"; };
+		D293EBAE18D5C6DF002F952B /* VBSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBSettingViewController.h; sourceTree = "<group>"; };
+		D293EBAF18D5C6DF002F952B /* VBSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBSettingViewController.m; sourceTree = "<group>"; };
+		D293EBB418D5CCB0002F952B /* VBSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VBSettingViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +77,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D228549718D33D8900EFFE31 /* MobileCoreServices.framework in Frameworks */,
+				D228549518D33D4000EFFE31 /* AssetsLibrary.framework in Frameworks */,
+				D228549018D339FE00EFFE31 /* QuartzCore.framework in Frameworks */,
 				D228545D18D315A500EFFE31 /* CoreGraphics.framework in Frameworks */,
 				D228545F18D315A500EFFE31 /* UIKit.framework in Frameworks */,
 				D228545B18D315A500EFFE31 /* Foundation.framework in Frameworks */,
@@ -92,8 +112,8 @@
 		D228545818D315A500EFFE31 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D228545718D315A500EFFE31 /* Selfy day.app */,
-				D228547818D315A500EFFE31 /* Selfy dayTests.xctest */,
+				D228545718D315A500EFFE31 /* Selfy.app */,
+				D228547818D315A500EFFE31 /* SelfyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,6 +121,9 @@
 		D228545918D315A500EFFE31 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D228549618D33D8900EFFE31 /* MobileCoreServices.framework */,
+				D228549418D33D4000EFFE31 /* AssetsLibrary.framework */,
+				D228548F18D339FE00EFFE31 /* QuartzCore.framework */,
 				D228545A18D315A500EFFE31 /* Foundation.framework */,
 				D228545C18D315A500EFFE31 /* CoreGraphics.framework */,
 				D228545E18D315A500EFFE31 /* UIKit.framework */,
@@ -117,6 +140,10 @@
 				D228546C18D315A500EFFE31 /* Main.storyboard */,
 				D228546F18D315A500EFFE31 /* VBViewController.h */,
 				D228547018D315A500EFFE31 /* VBViewController.m */,
+				D293EBAE18D5C6DF002F952B /* VBSettingViewController.h */,
+				D293EBAF18D5C6DF002F952B /* VBSettingViewController.m */,
+				D293EBB418D5CCB0002F952B /* VBSettingViewController.xib */,
+				D293EBB318D5C6EA002F952B /* Assets */,
 				D228547218D315A500EFFE31 /* Images.xcassets */,
 				D228546118D315A500EFFE31 /* Supporting Files */,
 			);
@@ -126,10 +153,10 @@
 		D228546118D315A500EFFE31 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D228546218D315A500EFFE31 /* Selfy day-Info.plist */,
+				D228546218D315A500EFFE31 /* Selfy-Info.plist */,
 				D228546318D315A500EFFE31 /* InfoPlist.strings */,
 				D228546618D315A500EFFE31 /* main.m */,
-				D228546818D315A500EFFE31 /* Selfy day-Prefix.pch */,
+				D228546818D315A500EFFE31 /* Selfy-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -146,18 +173,29 @@
 		D228548018D315A500EFFE31 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D228548118D315A500EFFE31 /* Selfy dayTests-Info.plist */,
+				D228548118D315A500EFFE31 /* SelfyTests-Info.plist */,
 				D228548218D315A500EFFE31 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D293EBB318D5C6EA002F952B /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D228549118D33CC600EFFE31 /* ALAssetsLibrary+CustomPhotoAlbum.h */,
+				D228549218D33CC600EFFE31 /* ALAssetsLibrary+CustomPhotoAlbum.m */,
+				D293EBAB18D4A38C002F952B /* CTAssetsPickerController.h */,
+				D293EBAC18D4A38C002F952B /* CTAssetsPickerController.m */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D228545618D315A500EFFE31 /* Selfy day */ = {
+		D228545618D315A500EFFE31 /* Selfy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D228548918D315A500EFFE31 /* Build configuration list for PBXNativeTarget "Selfy day" */;
+			buildConfigurationList = D228548918D315A500EFFE31 /* Build configuration list for PBXNativeTarget "Selfy" */;
 			buildPhases = (
 				D228545318D315A500EFFE31 /* Sources */,
 				D228545418D315A500EFFE31 /* Frameworks */,
@@ -167,14 +205,14 @@
 			);
 			dependencies = (
 			);
-			name = "Selfy day";
+			name = Selfy;
 			productName = "Selfy day";
-			productReference = D228545718D315A500EFFE31 /* Selfy day.app */;
+			productReference = D228545718D315A500EFFE31 /* Selfy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D228547718D315A500EFFE31 /* Selfy dayTests */ = {
+		D228547718D315A500EFFE31 /* SelfyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D228548C18D315A500EFFE31 /* Build configuration list for PBXNativeTarget "Selfy dayTests" */;
+			buildConfigurationList = D228548C18D315A500EFFE31 /* Build configuration list for PBXNativeTarget "SelfyTests" */;
 			buildPhases = (
 				D228547418D315A500EFFE31 /* Sources */,
 				D228547518D315A500EFFE31 /* Frameworks */,
@@ -185,9 +223,9 @@
 			dependencies = (
 				D228547E18D315A500EFFE31 /* PBXTargetDependency */,
 			);
-			name = "Selfy dayTests";
+			name = SelfyTests;
 			productName = "Selfy dayTests";
-			productReference = D228547818D315A500EFFE31 /* Selfy dayTests.xctest */;
+			productReference = D228547818D315A500EFFE31 /* SelfyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -205,7 +243,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D228545218D315A500EFFE31 /* Build configuration list for PBXProject "Selfy day" */;
+			buildConfigurationList = D228545218D315A500EFFE31 /* Build configuration list for PBXProject "Selfy" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -218,8 +256,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D228545618D315A500EFFE31 /* Selfy day */,
-				D228547718D315A500EFFE31 /* Selfy dayTests */,
+				D228545618D315A500EFFE31 /* Selfy */,
+				D228547718D315A500EFFE31 /* SelfyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -230,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D228547318D315A500EFFE31 /* Images.xcassets in Resources */,
+				D293EBB518D5CCB0002F952B /* VBSettingViewController.xib in Resources */,
 				D228546518D315A500EFFE31 /* InfoPlist.strings in Resources */,
 				D228546E18D315A500EFFE31 /* Main.storyboard in Resources */,
 			);
@@ -253,6 +292,9 @@
 				D228546B18D315A500EFFE31 /* VBAppDelegate.m in Sources */,
 				D228547118D315A500EFFE31 /* VBViewController.m in Sources */,
 				D228546718D315A500EFFE31 /* main.m in Sources */,
+				D293EBB118D5C6DF002F952B /* VBSettingViewController.m in Sources */,
+				D293EBAD18D4A38C002F952B /* CTAssetsPickerController.m in Sources */,
+				D228549318D33CC600EFFE31 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +311,7 @@
 /* Begin PBXTargetDependency section */
 		D228547E18D315A500EFFE31 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D228545618D315A500EFFE31 /* Selfy day */;
+			target = D228545618D315A500EFFE31 /* Selfy */;
 			targetProxy = D228547D18D315A500EFFE31 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -378,8 +420,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Selfy day/Selfy day-Prefix.pch";
-				INFOPLIST_FILE = "Selfy day/Selfy day-Info.plist";
+				GCC_PREFIX_HEADER = "Selfy day/Selfy-Prefix.pch";
+				INFOPLIST_FILE = "Selfy day/Selfy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -391,8 +434,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Selfy day/Selfy day-Prefix.pch";
-				INFOPLIST_FILE = "Selfy day/Selfy day-Info.plist";
+				GCC_PREFIX_HEADER = "Selfy day/Selfy-Prefix.pch";
+				INFOPLIST_FILE = "Selfy day/Selfy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -413,8 +457,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Selfy dayTests/Selfy dayTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "Selfy dayTests/SelfyTests-Info.plist";
+				PRODUCT_NAME = SelfyTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -431,8 +475,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Selfy day/Selfy day-Prefix.pch";
-				INFOPLIST_FILE = "Selfy dayTests/Selfy dayTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "Selfy dayTests/SelfyTests-Info.plist";
+				PRODUCT_NAME = SelfyTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -441,7 +485,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D228545218D315A500EFFE31 /* Build configuration list for PBXProject "Selfy day" */ = {
+		D228545218D315A500EFFE31 /* Build configuration list for PBXProject "Selfy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D228548718D315A500EFFE31 /* Debug */,
@@ -450,21 +494,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D228548918D315A500EFFE31 /* Build configuration list for PBXNativeTarget "Selfy day" */ = {
+		D228548918D315A500EFFE31 /* Build configuration list for PBXNativeTarget "Selfy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D228548A18D315A500EFFE31 /* Debug */,
 				D228548B18D315A500EFFE31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		D228548C18D315A500EFFE31 /* Build configuration list for PBXNativeTarget "Selfy dayTests" */ = {
+		D228548C18D315A500EFFE31 /* Build configuration list for PBXNativeTarget "SelfyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D228548D18D315A500EFFE31 /* Debug */,
 				D228548E18D315A500EFFE31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
