@@ -14,6 +14,9 @@
 
 #import "VBSettingViewController.h"
 
+#import "VBPhotoToVideo.h"
+
+
 #define VBselfyAlbum @"Selfy Photo Album"
 
 @interface VBViewController ()
@@ -53,6 +56,8 @@
                                                             message:@"Please go to Settings ⇨ Privacy ⇨ Photos to allow Selfy save photos to your library."
                                                            delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alertView show];
+        
+        [self.navigationController setToolbarHidden:YES animated:YES];
     };
     
     __block BOOL albumWasFound = NO;
@@ -124,6 +129,40 @@
     }
 }
 
+
+- (IBAction) createSelfyVideo:(id)sender {
+
+    _vc.navigationItem.prompt = @"Please select first photo of range.";
+    _vc.collectionView.allowsSelection = YES;
+    _vc.collectionView.allowsMultipleSelection = YES;
+    
+    UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:self
+                                                              action:@selector(cancelSelection)];
+    _vc.navigationItem.rightBarButtonItem = cancel;
+    
+//    NSMutableArray * images = [[NSMutableArray alloc] init];
+//    [_selfyGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+//        // Checking if group isn't empty
+//        if (! result) return;
+//
+//        [images addObject:result];
+//    }];
+//
+//    NSString *path = [[VBPhotoToVideo documentsDirectory] stringByAppendingPathComponent:@"movie.mov"];
+//    
+//    
+//    [VBPhotoToVideo writeImagesAsMovie:images toPath:path fps:30];
+    
+    
+}
+
+
+- (void) cancelSelection {
+    _vc.navigationItem.prompt = nil;
+    _vc.navigationItem.rightBarButtonItem = nil;
+}
 
 
 - (void)didReceiveMemoryWarning

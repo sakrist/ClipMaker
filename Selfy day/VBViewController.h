@@ -18,4 +18,6 @@
 
 - (IBAction) takePhoto:(id)sender;
 
+- (IBAction) createSelfyVideo:(id)sender;
+
 @end

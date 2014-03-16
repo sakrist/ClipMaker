@@ -28,6 +28,11 @@
 		D293EBAD18D4A38C002F952B /* CTAssetsPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D293EBAC18D4A38C002F952B /* CTAssetsPickerController.m */; };
 		D293EBB118D5C6DF002F952B /* VBSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D293EBAF18D5C6DF002F952B /* VBSettingViewController.m */; };
 		D293EBB518D5CCB0002F952B /* VBSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D293EBB418D5CCB0002F952B /* VBSettingViewController.xib */; };
+		D293EBB718D62A7F002F952B /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D293EBB618D62A7F002F952B /* CoreImage.framework */; };
+		D293EBBA18D64ACC002F952B /* VBPhotoToVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = D293EBB918D64ACC002F952B /* VBPhotoToVideo.m */; };
+		D293EBBC18D64ADD002F952B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D293EBBB18D64ADD002F952B /* CoreVideo.framework */; };
+		D293EBBE18D64AEE002F952B /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D293EBBD18D64AEE002F952B /* CoreAudio.framework */; };
+		D293EBC018D64AF4002F952B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D293EBBF18D64AF4002F952B /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +75,12 @@
 		D293EBAE18D5C6DF002F952B /* VBSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBSettingViewController.h; sourceTree = "<group>"; };
 		D293EBAF18D5C6DF002F952B /* VBSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBSettingViewController.m; sourceTree = "<group>"; };
 		D293EBB418D5CCB0002F952B /* VBSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VBSettingViewController.xib; sourceTree = "<group>"; };
+		D293EBB618D62A7F002F952B /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		D293EBB818D64ACC002F952B /* VBPhotoToVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBPhotoToVideo.h; sourceTree = "<group>"; };
+		D293EBB918D64ACC002F952B /* VBPhotoToVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBPhotoToVideo.m; sourceTree = "<group>"; };
+		D293EBBB18D64ADD002F952B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		D293EBBD18D64AEE002F952B /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		D293EBBF18D64AF4002F952B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +88,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D293EBC018D64AF4002F952B /* AVFoundation.framework in Frameworks */,
+				D293EBBE18D64AEE002F952B /* CoreAudio.framework in Frameworks */,
+				D293EBBC18D64ADD002F952B /* CoreVideo.framework in Frameworks */,
+				D293EBB718D62A7F002F952B /* CoreImage.framework in Frameworks */,
 				D228549718D33D8900EFFE31 /* MobileCoreServices.framework in Frameworks */,
 				D228549518D33D4000EFFE31 /* AssetsLibrary.framework in Frameworks */,
 				D228549018D339FE00EFFE31 /* QuartzCore.framework in Frameworks */,
@@ -121,6 +136,10 @@
 		D228545918D315A500EFFE31 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D293EBBF18D64AF4002F952B /* AVFoundation.framework */,
+				D293EBBD18D64AEE002F952B /* CoreAudio.framework */,
+				D293EBBB18D64ADD002F952B /* CoreVideo.framework */,
+				D293EBB618D62A7F002F952B /* CoreImage.framework */,
 				D228549618D33D8900EFFE31 /* MobileCoreServices.framework */,
 				D228549418D33D4000EFFE31 /* AssetsLibrary.framework */,
 				D228548F18D339FE00EFFE31 /* QuartzCore.framework */,
@@ -140,6 +159,8 @@
 				D228546C18D315A500EFFE31 /* Main.storyboard */,
 				D228546F18D315A500EFFE31 /* VBViewController.h */,
 				D228547018D315A500EFFE31 /* VBViewController.m */,
+				D293EBB818D64ACC002F952B /* VBPhotoToVideo.h */,
+				D293EBB918D64ACC002F952B /* VBPhotoToVideo.m */,
 				D293EBAE18D5C6DF002F952B /* VBSettingViewController.h */,
 				D293EBAF18D5C6DF002F952B /* VBSettingViewController.m */,
 				D293EBB418D5CCB0002F952B /* VBSettingViewController.xib */,
@@ -293,6 +314,7 @@
 				D228547118D315A500EFFE31 /* VBViewController.m in Sources */,
 				D228546718D315A500EFFE31 /* main.m in Sources */,
 				D293EBB118D5C6DF002F952B /* VBSettingViewController.m in Sources */,
+				D293EBBA18D64ACC002F952B /* VBPhotoToVideo.m in Sources */,
 				D293EBAD18D4A38C002F952B /* CTAssetsPickerController.m in Sources */,
 				D228549318D33CC600EFFE31 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 			);
