@@ -6,6 +6,11 @@
 //  Copyright (c) 2014 Volodymyr Boichentsov. All rights reserved.
 //
 
+#import <iAd/iAd.h>
+
+extern NSString * const BannerViewActionWillBegin;
+extern NSString * const BannerViewActionDidFinish;
+
 #import <UIKit/UIKit.h>
 #import "CTAssetsPickerController.h"
 

@@ -6,18 +6,22 @@
 //  Copyright (c) 2014 Volodymyr Boichentsov. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
 #import "VBViewController.h"
-#import "ALAssetsLibrary+CustomPhotoAlbum.h"
-#import <MobileCoreServices/MobileCoreServices.h>
-#import "CTAssetsPickerController.h"
-
 #import "VBSettingViewController.h"
-
 #import "VBPhotoToVideo.h"
 
+#import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <QuartzCore/QuartzCore.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
-#define VBselfyAlbum @"Selfy Photo Album"
+#import "CTAssetsPickerController.h"
+#import "ALAssetsLibrary+CustomPhotoAlbum.h"
+
+//#import "VBYoutubeShareViewController.h"
+//#import "VBYoutubeActivity.h"
+
+#define VBselfyAlbum @"iSelfie Photo Album"
 
 @interface VBViewController ()
 
@@ -25,9 +29,18 @@
 @property (nonatomic, strong) ALAssetsGroup *selfyGroup;
 @property (nonatomic, strong) CTAssetsViewController *vc;
 
+@property (nonatomic, strong) UILabel *fpsLabel;
+@property (nonatomic) int fps;
+
 @property (nonatomic, copy) NSArray *assets;
 
 @property (nonatomic, strong) NSArray *mainToolBarItems;
+
+
+@property (nonatomic, weak) ALAsset *firstAsset;
+@property (nonatomic, weak) ALAsset *lastAsset;
+
+@property (nonatomic) VBPhotoToVideo *photoToVideo;
 
 @end
 
@@ -41,13 +54,21 @@
     _takePhoto.layer.borderWidth = 1.0;
     _takePhoto.layer.cornerRadius = 10;
     
+//    _fpsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+    _fps = 25;
+    
     self.mainToolBarItems = self.toolbarItems;
     
     [self checkAlbumAvailability];
     
     [_selfyGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
-    
 }
+
+- (void) fpsUpdate:(UISlider*)slider {
+        _fps = slider.value;
+    [_fpsLabel setText:[NSString stringWithFormat:@"Fps: %d", _fps]];
+}
+
 
 - (void) checkAlbumAvailability {
 
@@ -107,21 +128,16 @@
     if (!_vc && _selfyGroup) {
         self.vc = [[CTAssetsViewController alloc] init];
         self.vc.assetsGroup = _selfyGroup;
-//        ((CTAssetsPickerController*)self.navigationController).delegate = self;
+        ((CTAssetsPickerController*)self.navigationController).delegate = self;
 
         [self.navigationController setToolbarHidden:NO animated:NO];
         self.navigationController.toolbarItems = self.toolbarItems;
         
         [self.navigationController pushViewController:_vc animated:NO];
         _vc.navigationItem.hidesBackButton = YES;
-        _vc.navigationItem.title = @"Selfy";
+        _vc.navigationItem.title = @"iSelfie";
         
-        UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithTitle:@"Add"
-                                         style:UIBarButtonItemStylePlain
-                                        target:self
-                                        action:nil];
         
-        _vc.navigationItem.leftBarButtonItem = add;
         _vc.navigationItem.rightBarButtonItem = nil;
         _vc.collectionView.allowsMultipleSelection = NO;
         _vc.collectionView.allowsSelection = NO;
@@ -129,9 +145,18 @@
     }
 }
 
+- (void) latest {
+    NSString *path = [[VBPhotoToVideo documentsDirectory] stringByAppendingPathComponent:@"movie.mp4"];
+    
+    MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:path]];
+
+    [_vc presentMoviePlayerViewControllerAnimated:player];
+}
+
 
 - (IBAction) createSelfyVideo:(id)sender {
-
+    
+    
     _vc.navigationItem.prompt = @"Please select first photo of range.";
     _vc.collectionView.allowsSelection = YES;
     _vc.collectionView.allowsMultipleSelection = YES;
@@ -141,28 +166,144 @@
                                                               target:self
                                                               action:@selector(cancelSelection)];
     _vc.navigationItem.rightBarButtonItem = cancel;
-    
-//    NSMutableArray * images = [[NSMutableArray alloc] init];
-//    [_selfyGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-//        // Checking if group isn't empty
-//        if (! result) return;
-//
-//        [images addObject:result];
-//    }];
-//
-//    NSString *path = [[VBPhotoToVideo documentsDirectory] stringByAppendingPathComponent:@"movie.mov"];
-//    
-//    
-//    [VBPhotoToVideo writeImagesAsMovie:images toPath:path fps:30];
+    _vc.navigationItem.leftBarButtonItem = nil;
     
     
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Create"
+                                                             style:UIBarButtonItemStylePlain target:self action:@selector(createVideo)];
+    
+    
+    [_vc.navigationController setToolbarHidden:YES animated:YES];
+    
+    _vc.toolbarItems = @[[_mainToolBarItems objectAtIndex:0], item, [_mainToolBarItems objectAtIndex:0]];
+    
+}
+
+- (void) createVideo {
+    
+    UIProgressView *progressBar = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, 290, 40)];
+    [progressBar setProgressViewStyle:UIProgressViewStyleBar];
+    UIBarButtonItem *itemProgress = [[UIBarButtonItem alloc] initWithCustomView:progressBar];
+    
+    _vc.toolbarItems = @[itemProgress];
+    
+    
+    _fps = (int)[[NSUserDefaults standardUserDefaults] floatForKey:@"fps"];
+    
+    NSArray *items = [_vc.collectionView indexPathsForSelectedItems];
+    NSInteger min = [_selfyGroup numberOfAssets];
+    NSInteger max = 0;
+    for (NSIndexPath *path in items) {
+        NSInteger v = [path indexAtPosition:1];
+        min = MIN(v, min);
+        max = MAX(v, max);
+    }
+    
+    
+    NSMutableArray * images = [[NSMutableArray alloc] init];
+    [_selfyGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+        // Checking if group isn't empty
+        if (! result) return;
+        
+        if (index >= min  && index <= max) {
+            [images addObject:result];
+        }
+    }];
+
+    NSString *path = [[VBPhotoToVideo documentsDirectory] stringByAppendingPathComponent:@"movie.mp4"];
+
+    _photoToVideo = [[VBPhotoToVideo alloc] init];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        [_photoToVideo writeImagesAsMovie:images toPath:path fps:_fps progressBlock:^(float progress) {
+            [progressBar setProgress:progress];
+        }];
+        
+        if (!_photoToVideo.stopPhotoToVideo) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self cancelSelection];
+                [self presentVideo];
+            });
+        }
+    });
+
 }
 
 
 - (void) cancelSelection {
+    _photoToVideo.stopPhotoToVideo = YES;
+    
     _vc.navigationItem.prompt = nil;
     _vc.navigationItem.rightBarButtonItem = nil;
+    _vc.collectionView.allowsSelection = NO;
+    _vc.toolbarItems = _mainToolBarItems;
+    
+    _firstAsset = nil;
+    _lastAsset = nil;
+    [_vc.navigationController setToolbarHidden:NO animated:YES];
 }
+
+
+- (void)assetsPickerController:(CTAssetsPickerController *)picker didSelectAsset:(ALAsset *)asset {
+    if (_firstAsset == nil) {
+        _firstAsset = asset;
+        _vc.navigationItem.prompt = @"Please select last photo of range.";
+    } else if (_lastAsset == nil) {
+        _lastAsset = asset;
+        _vc.navigationItem.prompt = nil;
+        [_vc.navigationController setToolbarHidden:NO animated:YES];
+    }
+}
+
+- (void)assetsPickerController:(CTAssetsPickerController *)picker didDeselectAsset:(ALAsset *)asset {
+    if (asset == _firstAsset) {
+        _firstAsset = nil;
+        _vc.navigationItem.prompt = @"Please select first photo of range.";
+    } else if (asset == _lastAsset) {
+        _lastAsset = nil;
+        _vc.navigationItem.prompt = @"Please select last photo of range.";
+        [_vc.navigationController setToolbarHidden:YES animated:YES];
+    }
+}
+
+
+
+- (void) presentVideo {
+    
+    NSString *path = [[VBPhotoToVideo documentsDirectory] stringByAppendingPathComponent:@"movie.mp4"];
+    
+    NSArray * activityItems = @[@"My iSelfie video. #selfie #iselfie @iSelfieApp", [NSURL fileURLWithPath:path]];
+    
+    
+//    NSArray *activities = @[[[VBYoutubeActivity alloc] init]];
+    
+    UIActivityViewController *activity = [[UIActivityViewController alloc] initWithActivityItems:activityItems
+                                      applicationActivities:nil];
+    
+            [activity setCompletionHandler:^(NSString *activityType, BOOL completed) {
+            }];
+    
+    [self presentViewController:activity animated:YES completion:nil];
+}
+
+
+- (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo; {
+    if (error) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Save failed"
+                              message: @"Failed to save image/video"
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        
+        [alert show];
+//        [alert release];
+    }
+    NSLog(@"dismiss");
+//    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 
 - (void)didReceiveMemoryWarning

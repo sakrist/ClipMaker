@@ -13,6 +13,31 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    float fps = [[NSUserDefaults standardUserDefaults] floatForKey:@"fps"];
+    if (fps <= 0 || fps > 30) {
+        [[NSUserDefaults standardUserDefaults] setFloat:20 forKey:@"fps"];
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableNotify"]) {
+        
+       [[UIApplication sharedApplication] setScheduledLocalNotifications:nil];
+        
+        NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:@"date"];
+        
+        UILocalNotification *notification = [[UILocalNotification alloc]init];
+        notification.repeatInterval = NSDayCalendarUnit;
+        [notification setAlertBody:@"Take a photo."];
+        [notification setFireDate:date];
+        [notification setTimeZone:[NSTimeZone  defaultTimeZone]];
+        notification.soundName = UILocalNotificationDefaultSoundName;
+        [[UIApplication sharedApplication] setScheduledLocalNotifications:[NSArray arrayWithObject:notification]];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [Flurry startSession:FLURRY_APP_ID];
+    
+    
     return YES;
 }
 							
@@ -35,12 +60,26 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    
+    NSInteger runs = [[NSUserDefaults standardUserDefaults] integerForKey:@"runCount"];
+    runs++;
+    [[NSUserDefaults standardUserDefaults] setInteger:runs forKey:@"runCount"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notif {
+    // Handle the notificaton when the app is running
+    NSLog(@"Recieved Notification %@",notif);
+    
+    
+    
 }
 
 @end

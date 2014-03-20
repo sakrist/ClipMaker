@@ -10,4 +10,21 @@
 
 @interface VBSettingViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UILabel *fpsLabel;
+
+@property (nonatomic, weak) IBOutlet UISlider *sliderFps;
+@property (nonatomic, weak) IBOutlet UISwitch *notificatioSwitch;
+
+@property (nonatomic, weak) IBOutlet UIDatePicker *datePicker;
+
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+
+- (IBAction) openSource:(UIButton *)sender;
+
+- (IBAction) changeFps:(UISlider*)sender;
+
+- (IBAction) changeTime:(id)sender;
+
+- (IBAction) enableNotification:(UISwitch*)sender;
+
 @end

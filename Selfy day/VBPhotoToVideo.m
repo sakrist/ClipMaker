@@ -25,8 +25,70 @@
 	return dPath;
 }
 
-+ (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image orientation:(UIImageOrientation)orientation{
+
++ (void) detectForFaces:(CGImageRef)facePicture orientation:(UIImageOrientation)orientation {
     
+    
+    CIImage* image = [CIImage imageWithCGImage:facePicture];
+
+    CIContext *context = [CIContext contextWithOptions:nil];                    // 1
+    NSDictionary *opts = @{ CIDetectorAccuracy : CIDetectorAccuracyLow };      // 2
+    CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeFace
+                                              context:context
+                                              options:opts];                    // 3
+    
+    int exifOrientation;
+    switch (orientation) {
+        case UIImageOrientationUp:
+            exifOrientation = 1;
+            break;
+        case UIImageOrientationDown:
+            exifOrientation = 3;
+            break;
+        case UIImageOrientationLeft:
+            exifOrientation = 8;
+            break;
+        case UIImageOrientationRight:
+            exifOrientation = 6;
+            break;
+        case UIImageOrientationUpMirrored:
+            exifOrientation = 2;
+            break;
+        case UIImageOrientationDownMirrored:
+            exifOrientation = 4;
+            break;
+        case UIImageOrientationLeftMirrored:
+            exifOrientation = 5;
+            break;
+        case UIImageOrientationRightMirrored:
+            exifOrientation = 7;
+            break;
+        default:
+            break;
+    }
+
+    
+    opts = @{ CIDetectorImageOrientation :[NSNumber numberWithInt:exifOrientation
+                                           ] };
+
+    NSArray *features = [detector featuresInImage:image options:opts];
+    
+    
+    if ([features count] > 0) {
+        CIFaceFeature *face = [features lastObject];
+        NSLog(@"%@", NSStringFromCGRect(face.bounds));
+    }
+    
+}
+
+
+
+
++ (CVPixelBufferRef) pixelBufferFromCGImage:(CGImageRef)image orientation:(UIImageOrientation)orientation{
+    
+    
+//    [self detectForFaces:image orientation:orientation];
+
     
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
@@ -86,15 +148,9 @@
 
 
 
-+ (void) writeImagesAsMovie:(NSArray *)array toPath:(NSString*)path fps:(int)fps {
+- (void) writeImagesAsMovie:(NSArray *)array toPath:(NSString*)path fps:(int)fps progressBlock:(void(^)(float progress))block {
     
     [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
-    
-//    NSString *documents = [VBPhotoToVideo documentsDirectory];
-    
-    //NSLog(path);
-//    NSString *filename = [documents stringByAppendingPathComponent:[array objectAtIndex:0]];
-//    UIImage *first = [UIImage imageWithContentsOfFile:filename];
     
     ALAsset *asset = [array firstObject];
     
@@ -109,7 +165,7 @@
     
     NSError *error = nil;
     AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:
-                                  [NSURL fileURLWithPath:path] fileType:AVFileTypeQuickTimeMovie
+                                  [NSURL fileURLWithPath:path] fileType:AVFileTypeMPEG4
                                                               error:&error];
     
     if(error) {
@@ -146,53 +202,70 @@
     
     [videoWriter startSessionAtSourceTime:kCMTimeZero];
     
-    CVPixelBufferRef buffer = [self pixelBufferFromCGImage:[first CGImage] orientation:orientation];
+    CVPixelBufferRef buffer = [VBPhotoToVideo pixelBufferFromCGImage:[first CGImage] orientation:orientation];
     
     BOOL result = [adaptor appendPixelBuffer:buffer withPresentationTime:kCMTimeZero];
     
-    if (result == NO) //failes on 3GS, but works on iphone 4
+    if (result == NO) { //failes on 3GS, but works on iphone 4
         NSLog(@"failed to append buffer");
+    }
     
     if(buffer) {
         CVBufferRelease(buffer);
     }
     
     
-    
-//    int reverseSort = NO;
-    
-//    float delta = 1.0/[array count];
+    float delta = 1.0/[array count];
     
     
     int i = 0;
     for (ALAsset *asset in array)
     {
         
+        if (_stopPhotoToVideo) {
+            return;
+        }
         
         if (adaptor.assetWriterInput.readyForMoreMediaData) {
             
-            i++;
-            CMTime frameTime = CMTimeMake(1, fps);
-            CMTime lastTime = CMTimeMake(i, fps);
+            
+            int s = 25/fps;
+            
+            CMTime frameTime = CMTimeMake(s, 25);
+            CMTime lastTime = CMTimeMake(i, 25);
+            
+            i += s;
+            
             CMTime presentTime = CMTimeAdd(lastTime, frameTime);
             
             ALAssetRepresentation *rep = [asset defaultRepresentation];
             CGImageRef iref = [rep fullResolutionImage];
             
+            CGFloat width = CGImageGetWidth(iref);
+            CGFloat height = CGImageGetHeight(iref);
+
+            BOOL recreate = NO;
+            CGContextRef bitmap = NULL;
+            if (frameSize.width != height && frameSize.height != width) {
+                
+                CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+                bitmap = CGBitmapContextCreate(NULL, frameSize.width, frameSize.height, 8, 4 * frameSize.width, colorSpace, kCGImageAlphaPremultipliedFirst);
+                CGContextDrawImage(bitmap, CGRectMake(0, 0, frameSize.width, frameSize.height), iref);
+                iref = CGBitmapContextCreateImage(bitmap);
+                recreate = YES;
+            }
+            
+            
             UIImageOrientation orientation = (UIImageOrientation)[[asset valueForProperty:@"ALAssetPropertyOrientation"] intValue];
 
-            
-            
-            // INSERT IMAGE FOR preview
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    UIImage *newImg = [UIImage imageWithContentsOfFile:filePath];
-//                    [imgscreen setImage:newImg];
-//                });
-//            });
-            
-            buffer = [self pixelBufferFromCGImage:iref orientation:orientation];
+            buffer = [VBPhotoToVideo pixelBufferFromCGImage:iref orientation:orientation];
             BOOL result = [adaptor appendPixelBuffer:buffer withPresentationTime:presentTime];
+            
+            if (recreate) {
+                CGContextRelease(bitmap);
+                CGImageRelease(iref);
+
+            }
             
             if (result == NO) //failes on 3GS, but works on iphone 4
             {
@@ -209,7 +282,10 @@
             NSLog(@"error");
             i--;
         }
-//        [self performSelectorOnMainThread:@selector(addprogress) withObject:nil waitUntilDone:YES];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block(delta*i);
+        });
         
     }
     

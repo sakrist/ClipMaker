@@ -10,8 +10,10 @@
 
 @interface VBPhotoToVideo : NSObject
 
+@property BOOL stopPhotoToVideo;
+
 + (NSString *) documentsDirectory;
 
-+ (void) writeImagesAsMovie:(NSArray *)array toPath:(NSString*)path fps:(int)fps;
+- (void) writeImagesAsMovie:(NSArray *)array toPath:(NSString*)path fps:(int)fps progressBlock:(void(^)(float progress))block;
 
 @end
