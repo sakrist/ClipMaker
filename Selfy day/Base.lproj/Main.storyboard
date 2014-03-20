@@ -53,7 +53,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="r89-Zb-uYf" firstAttribute="top" secondItem="Cbb-7E-zye" secondAttribute="bottom" constant="153" id="Iz2-Ap-zXV"/>
+                            <constraint firstItem="r89-Zb-uYf" firstAttribute="top" secondItem="Cbb-7E-zye" secondAttribute="bottom" constant="153" id="Iz2-Ap-zXV">
+                                <string key="userLabel">Vertical Space - (153) - Label - Please go to Settings &gt; Privacy &gt; Photos to allow iSelfie save photos to your library. - Top Layout Guidelines</string>
+                            </constraint>
                             <constraint firstItem="i2I-vY-LLD" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Sna-OT-w43"/>
                             <constraint firstItem="i2I-vY-LLD" firstAttribute="trailing" secondItem="r89-Zb-uYf" secondAttribute="trailing" id="XfK-D1-Kuh"/>
                             <constraint firstItem="aiQ-om-RcN" firstAttribute="top" secondItem="r89-Zb-uYf" secondAttribute="bottom" constant="141" id="cxd-Ag-ikx"/>

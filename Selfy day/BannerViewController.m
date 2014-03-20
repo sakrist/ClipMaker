@@ -65,6 +65,8 @@ NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
     
     NSInteger runs = [[NSUserDefaults standardUserDefaults] integerForKey:@"runCount"];
     
+    _contentController = self.childViewControllers[0];
+    
     if (runs < 15) {
         return;
     }
@@ -83,7 +85,7 @@ NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
     
     [self.view addSubview:_bannerView];
     
-    _contentController = self.childViewControllers[0];  // remember who our content child is
+      // remember who our content child is
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation

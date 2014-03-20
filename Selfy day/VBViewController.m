@@ -413,7 +413,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         void (^completion)(NSURL *, NSError *) = ^(NSURL *assetURL, NSError *error) {
             if (error) NSLog(@"!!!ERROR,  write the image data to the assets library (camera roll): %@",
                              [error description]);
-            NSLog(@"*** URL %@ | %@ || type: %@ ***", assetURL, [assetURL absoluteString], [assetURL class]);
+//            NSLog(@"*** URL %@ | %@ || type: %@ ***", assetURL, [assetURL absoluteString], [assetURL class]);
 //            // Add new item to |photos_| & table view appropriately
 //            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:self.photos.count
 //                                                         inSection:0];

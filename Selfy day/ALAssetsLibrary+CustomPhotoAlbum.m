@@ -174,13 +174,13 @@
       ALAssetsLibrary * __weak weakSelf = self;
       
       // If iOS version is lower than 5.0, throw a warning message
-      if (! [self respondsToSelector:@selector(addAssetsGroupAlbumWithName:resultBlock:failureBlock:)])
-        NSLog(@"![WARNING][LIB:ALAssetsLibrary+CustomPhotoAlbum]: \
-              |-addAssetsGroupAlbumWithName:resultBlock:failureBlock:| \
-              only available on iOS 5.0 or later. \
-              ASSET cannot be saved to album!");
+        if (! [self respondsToSelector:@selector(addAssetsGroupAlbumWithName:resultBlock:failureBlock:)]) {
+//        NSLog(@"![WARNING][LIB:ALAssetsLibrary+CustomPhotoAlbum]: \
+//              |-addAssetsGroupAlbumWithName:resultBlock:failureBlock:| \
+//              only available on iOS 5.0 or later. \
+//              ASSET cannot be saved to album!");
       // Create new assets album
-      else {
+          } else {
         [self addAssetsGroupAlbumWithName:albumName
                               resultBlock:^(ALAssetsGroup *createdGroup) {
                                 // Get the photo's instance
