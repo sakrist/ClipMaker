@@ -202,13 +202,13 @@
             frameSize.height = 1280;
             frameSize.width = 960;
         }
-    } else {
-        if (frameSize.width > 1280) {
-            frameSize.width = 1280;
-            frameSize.height = 960;
-        }
     }
-    
+        
+    if (frameSize.width > 1280) {
+        frameSize.width = 1280;
+        frameSize.height = 960;
+    }
+   
     
     NSError *error = nil;
     self.videoWriter = [[AVAssetWriter alloc] initWithURL:
