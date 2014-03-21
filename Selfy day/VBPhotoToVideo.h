@@ -11,9 +11,15 @@
 @interface VBPhotoToVideo : NSObject
 
 @property BOOL stopPhotoToVideo;
+@property (nonatomic, retain) NSArray *arrayAssets;
+@property (nonatomic, copy) void (^complitionBlock)(BOOL done);
 
 + (NSString *) documentsDirectory;
 
 - (void) writeImagesAsMovie:(NSArray *)array toPath:(NSString*)path fps:(int)fps progressBlock:(void(^)(float progress))block;
+
+- (void) writeAssetAt:(int)index;
+
+- (void) finishing;
 
 @end

@@ -12,6 +12,23 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 
 
+@interface VBPhotoToVideo () {
+    float _deltaProgress;
+    int _time;
+    int _deltaTime;
+    int _currentIndex;
+    CGSize frameSize;
+}
+
+@property (nonatomic, retain) AVAssetWriter *videoWriter;
+@property (nonatomic, retain) AVAssetWriterInputPixelBufferAdaptor *adaptor;
+@property (nonatomic, retain) AVAssetWriterInput *writerInput;
+
+@property (nonatomic, copy) void (^progressBlock)(float progress);
+
+
+@end
+
 
 @implementation VBPhotoToVideo
 
@@ -84,9 +101,11 @@
 
 
 
-+ (CVPixelBufferRef) pixelBufferFromCGImage:(CGImageRef)image orientation:(UIImageOrientation)orientation{
++ (CVPixelBufferRef) pixelBufferFromCGImage:(CGImageRef)image orientation:(UIImageOrientation)orientation  preferSize:(CGSize)pSize{
     
-    
+    @autoreleasepool {
+        
+        
 //    [self detectForFaces:image orientation:orientation];
 
     
@@ -102,6 +121,13 @@
         width = CGImageGetHeight(image);
         height = CGImageGetWidth(image);
     }
+        
+
+    if (pSize.width != width && pSize.height != height) {
+        width = pSize.width;
+        height = pSize.height;
+    }
+        
     
     CVPixelBufferCreate(kCFAllocatorDefault, width,
                         height, kCVPixelFormatType_32ARGB, (__bridge CFDictionaryRef) options,
@@ -135,24 +161,31 @@
         CGContextRotateCTM (context, -M_PI);
     }
     
-    
-    CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image),
-                                           CGImageGetHeight(image)), image);
+    if (orientation == UIImageOrientationRight || orientation == UIImageOrientationLeft) {
+        int t = width;
+        width = height;
+        height = t;
+    }
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), image);
     CGColorSpaceRelease(rgbColorSpace);
     CGContextRelease(context);
     
     CVPixelBufferUnlockBaseAddress(pxbuffer, 0);
-    
-    return pxbuffer;
+        
+        return pxbuffer;
+    }
 }
 
 
 
 - (void) writeImagesAsMovie:(NSArray *)array toPath:(NSString*)path fps:(int)fps progressBlock:(void(^)(float progress))block {
     
+    self.progressBlock = block;
+    self.arrayAssets = [NSArray arrayWithArray:array];
+    
     [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
     
-    ALAsset *asset = [array firstObject];
+    ALAsset *asset = [_arrayAssets firstObject];
     
     UIImageOrientation orientation = (UIImageOrientation)[[asset valueForProperty:@"ALAssetPropertyOrientation"] intValue];
     UIImage *first = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullResolutionImage]
@@ -160,11 +193,25 @@
                                     orientation:orientation];
 
     
-    CGSize frameSize = first.size;
+    frameSize = first.size;
+//    3264x2448
+//    1920x1080
+//    1280x960
+    if (orientation == UIImageOrientationRight) {
+        if (frameSize.height > 1280) {
+            frameSize.height = 1280;
+            frameSize.width = 960;
+        }
+    } else {
+        if (frameSize.width > 1280) {
+            frameSize.width = 1280;
+            frameSize.height = 960;
+        }
+    }
     
     
     NSError *error = nil;
-    AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:
+    self.videoWriter = [[AVAssetWriter alloc] initWithURL:
                                   [NSURL fileURLWithPath:path] fileType:AVFileTypeMPEG4
                                                               error:&error];
     
@@ -179,7 +226,7 @@
     
     
     
-    AVAssetWriterInput* writerInput = [AVAssetWriterInput
+    _writerInput = [AVAssetWriterInput
                                         assetWriterInputWithMediaType:AVMediaTypeVideo
                                         outputSettings:videoSettings];
     
@@ -188,23 +235,23 @@
     [attributes setObject:[NSNumber numberWithUnsignedInt:frameSize.width] forKey:(NSString*)kCVPixelBufferWidthKey];
     [attributes setObject:[NSNumber numberWithUnsignedInt:frameSize.height] forKey:(NSString*)kCVPixelBufferHeightKey];
     
-    AVAssetWriterInputPixelBufferAdaptor *adaptor = [AVAssetWriterInputPixelBufferAdaptor
-                                                     assetWriterInputPixelBufferAdaptorWithAssetWriterInput:writerInput
+    self.adaptor = [AVAssetWriterInputPixelBufferAdaptor
+                                                     assetWriterInputPixelBufferAdaptorWithAssetWriterInput:_writerInput
                                                      sourcePixelBufferAttributes:attributes];
     
-    [videoWriter addInput:writerInput];
+    [_videoWriter addInput:_writerInput];
     
     // fixes all errors
-    writerInput.expectsMediaDataInRealTime = YES;
+    _writerInput.expectsMediaDataInRealTime = YES;
     
     //Start a session:
-    [videoWriter startWriting];
+    [_videoWriter startWriting];
     
-    [videoWriter startSessionAtSourceTime:kCMTimeZero];
+    [_videoWriter startSessionAtSourceTime:kCMTimeZero];
     
-    CVPixelBufferRef buffer = [VBPhotoToVideo pixelBufferFromCGImage:[first CGImage] orientation:orientation];
+    CVPixelBufferRef buffer = [VBPhotoToVideo pixelBufferFromCGImage:[first CGImage] orientation:orientation preferSize:frameSize];
     
-    BOOL result = [adaptor appendPixelBuffer:buffer withPresentationTime:kCMTimeZero];
+    BOOL result = [_adaptor appendPixelBuffer:buffer withPresentationTime:kCMTimeZero];
     
     if (result == NO) { //failes on 3GS, but works on iphone 4
         NSLog(@"failed to append buffer");
@@ -215,89 +262,95 @@
     }
     
     
-    float delta = 1.0/[array count];
-    
-    
-    int i = 0;
-    for (ALAsset *asset in array)
-    {
-        
-        if (_stopPhotoToVideo) {
-            return;
-        }
-        
-        if (adaptor.assetWriterInput.readyForMoreMediaData) {
-            
-            
-            int s = 25/fps;
-            
-            CMTime frameTime = CMTimeMake(s, 25);
-            CMTime lastTime = CMTimeMake(i, 25);
-            
-            i += s;
-            
-            CMTime presentTime = CMTimeAdd(lastTime, frameTime);
-            
-            ALAssetRepresentation *rep = [asset defaultRepresentation];
-            CGImageRef iref = [rep fullResolutionImage];
-            
-            CGFloat width = CGImageGetWidth(iref);
-            CGFloat height = CGImageGetHeight(iref);
-
-            BOOL recreate = NO;
-            CGContextRef bitmap = NULL;
-            if (frameSize.width != height && frameSize.height != width) {
-                
-                CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-                bitmap = CGBitmapContextCreate(NULL, frameSize.width, frameSize.height, 8, 4 * frameSize.width, colorSpace, kCGImageAlphaPremultipliedFirst);
-                CGContextDrawImage(bitmap, CGRectMake(0, 0, frameSize.width, frameSize.height), iref);
-                iref = CGBitmapContextCreateImage(bitmap);
-                recreate = YES;
-            }
-            
-            
-            UIImageOrientation orientation = (UIImageOrientation)[[asset valueForProperty:@"ALAssetPropertyOrientation"] intValue];
-
-            buffer = [VBPhotoToVideo pixelBufferFromCGImage:iref orientation:orientation];
-            BOOL result = [adaptor appendPixelBuffer:buffer withPresentationTime:presentTime];
-            
-            if (recreate) {
-                CGContextRelease(bitmap);
-                CGImageRelease(iref);
-
-            }
-            
-            if (result == NO) //failes on 3GS, but works on iphone 4
-            {
-                NSLog(@"failed to append buffer");
-                NSLog(@"The error is %@", [videoWriter error]);
-            }
-            
-            if(buffer) {
-                CVBufferRelease(buffer);
-            }
-            
-            
-        } else {
-            NSLog(@"error");
-            i--;
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            block(delta*i);
-        });
-        
-    }
-    
-    //Finish the session:
-    [writerInput markAsFinished];
-    [videoWriter finishWritingWithCompletionHandler:^{
-        
-    }];
-    CVPixelBufferPoolRelease(adaptor.pixelBufferPool);
-
-    
+    _deltaProgress = 1.0/[_arrayAssets count];
+    _time = 0;
+    _deltaTime = 25/fps;
     
 }
+
+- (void) writeAssetAt:(int)index {
+
+    ALAsset *asset = [_arrayAssets objectAtIndex:index];
+    _currentIndex = index;
+    if (_stopPhotoToVideo) {
+        return;
+    }
+    
+    CMTime frameTime = CMTimeMake(_deltaTime, 25);
+    CMTime lastTime = CMTimeMake(_time, 25);
+    CMTime presentTime = CMTimeAdd(lastTime, frameTime);
+    _time += _deltaTime;
+    
+    if ([self appendAsset:asset time:presentTime size:frameSize]) {
+        __weak VBPhotoToVideo *bself = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [bself performBlock];
+        });
+    } else {
+        _stopPhotoToVideo = YES;
+    }
+}
+
+- (void) performBlock {
+    _progressBlock(_deltaProgress*_currentIndex);
+}
+
+
+- (BOOL) appendAsset:(ALAsset*)asset  time:(CMTime)presentTime size:(CGSize)size {
+    if (_adaptor.assetWriterInput.readyForMoreMediaData) {
+        
+        ALAssetRepresentation *rep = [asset defaultRepresentation];
+        CGImageRef iref = [rep fullResolutionImage];
+        
+        
+        UIImageOrientation orientation = (UIImageOrientation)[[asset valueForProperty:@"ALAssetPropertyOrientation"] intValue];
+        
+        CVPixelBufferRef buffer = [VBPhotoToVideo pixelBufferFromCGImage:iref orientation:orientation preferSize:size];
+        BOOL result = [_adaptor appendPixelBuffer:buffer withPresentationTime:presentTime];
+        
+        
+        if (result == NO) //failes on 3GS, but works on iphone 4
+        {
+            NSLog(@"failed to append buffer");
+            NSLog(@"The error is %@", [_videoWriter error]);
+        }
+        
+        //            if(buffer) {
+        CVBufferRelease(buffer);
+        //            }
+        
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (void) finishing {
+    //Finish the session:
+    [_writerInput markAsFinished];
+    [_videoWriter finishWritingWithCompletionHandler:^{
+        
+    }];
+    CVPixelBufferPoolRelease(_adaptor.pixelBufferPool);
+    self.videoWriter = nil;
+    self.adaptor = nil;
+    self.arrayAssets = nil;
+    self.writerInput = nil;
+    
+    __weak VBPhotoToVideo *bself = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [bself performComplition];
+    });
+
+}
+
+- (void) performComplition {
+    if (_complitionBlock) {
+        _complitionBlock(!_stopPhotoToVideo);
+        _complitionBlock = nil;
+    }
+}
+
+
 
 @end

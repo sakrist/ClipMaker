@@ -214,20 +214,41 @@
 
     _photoToVideo = [[VBPhotoToVideo alloc] init];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        [_photoToVideo writeImagesAsMovie:images toPath:path fps:_fps progressBlock:^(float progress) {
-            [progressBar setProgress:progress];
-        }];
-        
-        if (!_photoToVideo.stopPhotoToVideo) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self cancelSelection];
-                [self presentVideo];
-            });
+    __weak VBPhotoToVideo *b_photoToVideo = _photoToVideo;
+    __weak UIProgressView *b_progressBar = progressBar;
+    __weak VBViewController *b_controller = self;
+    
+    [_photoToVideo writeImagesAsMovie:images toPath:path fps:_fps progressBlock:^(float progress) {
+        [b_progressBar setProgress:progress];
+    }];
+    
+    [_photoToVideo setComplitionBlock:^(BOOL done) {
+        if (done) {
+            [b_controller cancelSelection];
+            [b_controller presentVideo];
         }
-    });
-
+    }];
+    
+    NSOperationQueue *que = [[NSOperationQueue alloc] init];
+    [que setMaxConcurrentOperationCount:1];
+    
+    
+    NSMutableArray *arrayOperations = [NSMutableArray array];
+    for (int i = 0, len = (int)[images count]; i < len; i++) {
+        NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
+            [b_photoToVideo writeAssetAt:i];
+        }];
+        [arrayOperations addObject:op];
+    }
+    
+    NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
+        [b_photoToVideo finishing];
+        b_controller.photoToVideo = nil;
+    }];
+    [arrayOperations addObject:op];
+    
+    [que addOperations:arrayOperations waitUntilFinished:NO];
+    
 }
 
 
