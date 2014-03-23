@@ -7,6 +7,7 @@
 //
 
 #import "VBPhotoToVideo.h"
+#import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
 #import <QuartzCore/QuartzCore.h>
 #import <AssetsLibrary/AssetsLibrary.h>
@@ -40,6 +41,10 @@
 	}
 	
 	return dPath;
+}
+
++ (NSString *) documentsPath:(NSString*)filename {
+    return [[VBPhotoToVideo documentsDirectory] stringByAppendingPathComponent:filename];
 }
 
 
@@ -137,9 +142,9 @@
     void *pxdata = CVPixelBufferGetBaseAddress(pxbuffer);
     
     CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(pxdata, width,
-                                                 height, 8, 4*width, rgbColorSpace,
-                                                 kCGImageAlphaNoneSkipFirst);
+    CGContextRef context = CGBitmapContextCreate(pxdata, width, height,
+                                                 8, 4*width, rgbColorSpace,
+                                                 (CGBitmapInfo)kCGImageAlphaNoneSkipFirst);
     
     CGContextConcatCTM(context, CGAffineTransformMakeRotation(0));
     
@@ -194,9 +199,11 @@
 
     
     frameSize = first.size;
+    
 //    3264x2448
 //    1920x1080
 //    1280x960
+    
     if (orientation == UIImageOrientationRight) {
         if (frameSize.height > 1280) {
             frameSize.height = 1280;
@@ -218,19 +225,17 @@
     if(error) {
         NSLog(@"error creating AssetWriter: %@",[error description]);
     }
+    
     NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:
                                    AVVideoCodecH264, AVVideoCodecKey,
                                    [NSNumber numberWithInt:frameSize.width], AVVideoWidthKey,
                                    [NSNumber numberWithInt:frameSize.height], AVVideoHeightKey,
                                    nil];
     
-    
-    
-    _writerInput = [AVAssetWriterInput
-                                        assetWriterInputWithMediaType:AVMediaTypeVideo
+    _writerInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo
                                         outputSettings:videoSettings];
     
-    NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
     [attributes setObject:[NSNumber numberWithUnsignedInt:kCVPixelFormatType_32ARGB] forKey:(NSString*)kCVPixelBufferPixelFormatTypeKey];
     [attributes setObject:[NSNumber numberWithUnsignedInt:frameSize.width] forKey:(NSString*)kCVPixelBufferWidthKey];
     [attributes setObject:[NSNumber numberWithUnsignedInt:frameSize.height] forKey:(NSString*)kCVPixelBufferHeightKey];
@@ -244,21 +249,22 @@
     // fixes all errors
     _writerInput.expectsMediaDataInRealTime = YES;
     
-    //Start a session:
+    // Start a session:
     [_videoWriter startWriting];
-    
     [_videoWriter startSessionAtSourceTime:kCMTimeZero];
     
-    CVPixelBufferRef buffer = [VBPhotoToVideo pixelBufferFromCGImage:[first CGImage] orientation:orientation preferSize:frameSize];
-    
-    BOOL result = [_adaptor appendPixelBuffer:buffer withPresentationTime:kCMTimeZero];
-    
-    if (result == NO) { //failes on 3GS, but works on iphone 4
-        NSLog(@"failed to append buffer");
-    }
-    
-    if(buffer) {
-        CVBufferRelease(buffer);
+    if (_adaptor.assetWriterInput.readyForMoreMediaData) {
+        
+        CVPixelBufferRef buffer = [VBPhotoToVideo pixelBufferFromCGImage:[first CGImage] orientation:orientation preferSize:frameSize];
+        BOOL result = [_adaptor appendPixelBuffer:buffer withPresentationTime:kCMTimeZero];
+        
+        if (result == NO) { //failes on 3GS, but works on iphone 4
+            NSLog(@"failed to append buffer");
+        }
+        
+        if(buffer) {
+            CVBufferRelease(buffer);
+        }
     }
     
     
@@ -296,7 +302,7 @@
 }
 
 
-- (BOOL) appendAsset:(ALAsset*)asset  time:(CMTime)presentTime size:(CGSize)size {
+- (BOOL) appendAsset:(ALAsset*)asset time:(CMTime)presentTime size:(CGSize)size {
     if (_adaptor.assetWriterInput.readyForMoreMediaData) {
         
         ALAssetRepresentation *rep = [asset defaultRepresentation];
@@ -315,23 +321,31 @@
             NSLog(@"The error is %@", [_videoWriter error]);
         }
         
-        //            if(buffer) {
-        CVBufferRelease(buffer);
-        //            }
+        if(buffer) {
+            CVBufferRelease(buffer);
+        }
         
         return YES;
     } else {
+        NSLog(@"not ready append");
         return NO;
     }
 }
 
 - (void) finishing {
+    
+    NSLog(@"finishing");
+    
     //Finish the session:
     [_writerInput markAsFinished];
+    
+    
+    [_videoWriter endSessionAtSourceTime:CMTimeMake(_time, 25)];
     [_videoWriter finishWritingWithCompletionHandler:^{
-        
+
     }];
-    CVPixelBufferPoolRelease(_adaptor.pixelBufferPool);
+    
+    CVPixelBufferPoolRelease(self.adaptor.pixelBufferPool);
     self.videoWriter = nil;
     self.adaptor = nil;
     self.arrayAssets = nil;
@@ -350,6 +364,62 @@
         _complitionBlock = nil;
     }
 }
+
+
+#pragma mark - add audio
+
+//- (void) addAudio:(NSString*)audioFilename toVideo:(NSString*)videoFilename {
+
++ (void) addAudio:(NSURL*)audioURL toVideo:(NSString*)videoFilename {
+        
+    
+    
+//    NSURL *audioURL = [NSURL fileURLWithPath:[VBPhotoToVideo documentsPath:audioFilename]];
+    NSURL *videoURL = [NSURL fileURLWithPath:[VBPhotoToVideo documentsPath:videoFilename]];
+    
+    NSString *outputFileName = [NSString stringWithFormat:@"output_%@", videoFilename];
+    NSString *outputFilePath = [VBPhotoToVideo documentsPath:outputFileName];
+    NSURL *outputFileUrl = [NSURL fileURLWithPath:outputFilePath];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:outputFilePath]) {
+        [[NSFileManager defaultManager] removeItemAtPath:outputFilePath error:nil];
+    }
+    
+    AVMutableComposition* mixComposition = [AVMutableComposition composition];
+    CMTime nextClipStartTime = kCMTimeZero;
+    
+    AVURLAsset* videoAsset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
+    CMTimeRange videoTimeRange = CMTimeRangeMake(kCMTimeZero, videoAsset.duration);
+    
+    AVMutableCompositionTrack *compositionVideoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo
+                                                                                     preferredTrackID:kCMPersistentTrackID_Invalid];
+    [compositionVideoTrack insertTimeRange:videoTimeRange
+                                   ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0]
+                                    atTime:nextClipStartTime
+                                     error:nil];
+    
+    
+    AVURLAsset* audioAsset = [[AVURLAsset alloc] initWithURL:audioURL options:nil];
+    CMTimeRange audioTimeRange = CMTimeRangeMake(kCMTimeZero, videoAsset.duration);
+    AVMutableCompositionTrack *compositionAudioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio
+                                                                                     preferredTrackID:kCMPersistentTrackID_Invalid];
+    [compositionAudioTrack insertTimeRange:audioTimeRange
+                                   ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0]
+                                    atTime:nextClipStartTime
+                                     error:nil];
+    
+    
+    
+    AVAssetExportSession *assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition
+                                                                         presetName:AVAssetExportPresetHighestQuality];
+    assetExport.outputFileType = @"public.mpeg-4";
+    assetExport.outputURL = outputFileUrl;
+    
+    [assetExport exportAsynchronouslyWithCompletionHandler: ^(void) {
+
+    }];
+}
+
 
 
 

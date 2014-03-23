@@ -42,6 +42,8 @@
 		D293EBBE18D64AEE002F952B /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D293EBBD18D64AEE002F952B /* CoreAudio.framework */; };
 		D293EBC018D64AF4002F952B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D293EBBF18D64AF4002F952B /* AVFoundation.framework */; };
 		D293EBC218D72256002F952B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D293EBC118D72256002F952B /* MediaPlayer.framework */; };
+		D2A78DEA18DE3F590021C347 /* VBLastVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A78DE818DE3F590021C347 /* VBLastVideoViewController.m */; };
+		D2A78DEB18DE3F590021C347 /* VBLastVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A78DE918DE3F590021C347 /* VBLastVideoViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,44 +54,13 @@
 			remoteGlobalIDString = D228545618D315A500EFFE31;
 			remoteInfo = "Selfy day";
 		};
-		D2E9044D18D798D20066D6FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D2E9044618D798D20066D6FE /* GTL.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4F38F6A60B66E91D00B24B81;
-			remoteInfo = GTLFramework;
-		};
-		D2E9044F18D798D20066D6FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D2E9044618D798D20066D6FE /* GTL.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4F12027C11A4CA2F00BEB470;
-			remoteInfo = GTLTouchStaticLib;
-		};
-		D2E9045118D798D20066D6FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D2E9044618D798D20066D6FE /* GTL.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4F12027D11A4CA2F00BEB470;
-			remoteInfo = GTLUnitTests;
-		};
-		D2E9045318D798D20066D6FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D2E9044618D798D20066D6FE /* GTL.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4F1AD9020B71603F00DC0485;
-			remoteInfo = DevelopmentTestTool;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D21FD1D918D7A05400523FD7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D21FD1DF18D7A11000523FD7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		D21FD2CD18D7A1C800523FD7 /* GTMOAuth2ViewTouch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GTMOAuth2ViewTouch.xib; path = GData/OAuth2/Touch/GTMOAuth2ViewTouch.xib; sourceTree = "<group>"; };
 		D21FD2D918D865E300523FD7 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		D21FD2DA18D865E300523FD7 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
-		D21FD2E018D8FFFC00523FD7 /* VBYoutubeActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBYoutubeActivity.h; sourceTree = "<group>"; };
-		D21FD2E118D8FFFC00523FD7 /* VBYoutubeActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBYoutubeActivity.m; sourceTree = "<group>"; };
 		D228545718D315A500EFFE31 /* iSelfie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSelfie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D228545A18D315A500EFFE31 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D228545C18D315A500EFFE31 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -133,10 +104,9 @@
 		D293EBBD18D64AEE002F952B /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		D293EBBF18D64AF4002F952B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D293EBC118D72256002F952B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		D2E9044618D798D20066D6FE /* GTL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GTL.xcodeproj; path = GData/GTL.xcodeproj; sourceTree = "<group>"; };
-		D2E9046418D79A910066D6FE /* VBYoutubeShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBYoutubeShareViewController.h; sourceTree = "<group>"; };
-		D2E9046518D79A910066D6FE /* VBYoutubeShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBYoutubeShareViewController.m; sourceTree = "<group>"; };
-		D2E9046618D79A910066D6FE /* VBYoutubeShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VBYoutubeShareViewController.xib; sourceTree = "<group>"; };
+		D2A78DE718DE3F590021C347 /* VBLastVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBLastVideoViewController.h; sourceTree = "<group>"; };
+		D2A78DE818DE3F590021C347 /* VBLastVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBLastVideoViewController.m; sourceTree = "<group>"; };
+		D2A78DE918DE3F590021C347 /* VBLastVideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VBLastVideoViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,11 +202,13 @@
 				D293EBAE18D5C6DF002F952B /* VBSettingViewController.h */,
 				D293EBAF18D5C6DF002F952B /* VBSettingViewController.m */,
 				D293EBB418D5CCB0002F952B /* VBSettingViewController.xib */,
+				D2A78DE718DE3F590021C347 /* VBLastVideoViewController.h */,
+				D2A78DE818DE3F590021C347 /* VBLastVideoViewController.m */,
+				D2A78DE918DE3F590021C347 /* VBLastVideoViewController.xib */,
 				D261A75818D9EE1E004A5DCC /* BannerViewController.h */,
 				D261A75918D9EE1E004A5DCC /* BannerViewController.m */,
 				D293EBB318D5C6EA002F952B /* Assets */,
 				D228547218D315A500EFFE31 /* Images.xcassets */,
-				D2E9044518D798CC0066D6FE /* GData */,
 				D228546118D315A500EFFE31 /* Supporting Files */,
 			);
 			path = "Selfy day";
@@ -284,31 +256,6 @@
 				D293EBAC18D4A38C002F952B /* CTAssetsPickerController.m */,
 			);
 			name = Assets;
-			sourceTree = "<group>";
-		};
-		D2E9044518D798CC0066D6FE /* GData */ = {
-			isa = PBXGroup;
-			children = (
-				D21FD2E018D8FFFC00523FD7 /* VBYoutubeActivity.h */,
-				D21FD2E118D8FFFC00523FD7 /* VBYoutubeActivity.m */,
-				D2E9046418D79A910066D6FE /* VBYoutubeShareViewController.h */,
-				D2E9046518D79A910066D6FE /* VBYoutubeShareViewController.m */,
-				D2E9046618D79A910066D6FE /* VBYoutubeShareViewController.xib */,
-				D21FD2CD18D7A1C800523FD7 /* GTMOAuth2ViewTouch.xib */,
-				D2E9044618D798D20066D6FE /* GTL.xcodeproj */,
-			);
-			name = GData;
-			sourceTree = "<group>";
-		};
-		D2E9044718D798D20066D6FE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D2E9044E18D798D20066D6FE /* GTL.framework */,
-				D2E9045018D798D20066D6FE /* libGTLTouchStaticLib.a */,
-				D2E9045218D798D20066D6FE /* GTLUnitTests.octest */,
-				D2E9045418D798D20066D6FE /* DevelopmentTestTool */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,12 +325,6 @@
 			mainGroup = D228544E18D315A500EFFE31;
 			productRefGroup = D228545818D315A500EFFE31 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = D2E9044718D798D20066D6FE /* Products */;
-					ProjectRef = D2E9044618D798D20066D6FE /* GTL.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				D228545618D315A500EFFE31 /* iSelfie */,
@@ -391,37 +332,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		D2E9044E18D798D20066D6FE /* GTL.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = GTL.framework;
-			remoteRef = D2E9044D18D798D20066D6FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D2E9045018D798D20066D6FE /* libGTLTouchStaticLib.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libGTLTouchStaticLib.a;
-			remoteRef = D2E9044F18D798D20066D6FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D2E9045218D798D20066D6FE /* GTLUnitTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = GTLUnitTests.octest;
-			remoteRef = D2E9045118D798D20066D6FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D2E9045418D798D20066D6FE /* DevelopmentTestTool */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = DevelopmentTestTool;
-			remoteRef = D2E9045318D798D20066D6FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D228545518D315A500EFFE31 /* Resources */ = {
@@ -432,6 +342,7 @@
 				D228547318D315A500EFFE31 /* Images.xcassets in Resources */,
 				D293EBB518D5CCB0002F952B /* VBSettingViewController.xib in Resources */,
 				D228546518D315A500EFFE31 /* InfoPlist.strings in Resources */,
+				D2A78DEB18DE3F590021C347 /* VBLastVideoViewController.xib in Resources */,
 				D228546E18D315A500EFFE31 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,6 +370,7 @@
 				D261A75A18D9EE1E004A5DCC /* BannerViewController.m in Sources */,
 				D293EBAD18D4A38C002F952B /* CTAssetsPickerController.m in Sources */,
 				D21FD2DB18D865E300523FD7 /* UIPlaceHolderTextView.m in Sources */,
+				D2A78DEA18DE3F590021C347 /* VBLastVideoViewController.m in Sources */,
 				D228549318D33CC600EFFE31 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

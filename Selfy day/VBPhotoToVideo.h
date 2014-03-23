@@ -15,11 +15,14 @@
 @property (nonatomic, copy) void (^complitionBlock)(BOOL done);
 
 + (NSString *) documentsDirectory;
++ (NSString *) documentsPath:(NSString*)filename;
 
 - (void) writeImagesAsMovie:(NSArray *)array toPath:(NSString*)path fps:(int)fps progressBlock:(void(^)(float progress))block;
 
 - (void) writeAssetAt:(int)index;
 
 - (void) finishing;
+
++ (void) addAudio:(NSURL*)audioURL toVideo:(NSString*)videoFilename;
 
 @end

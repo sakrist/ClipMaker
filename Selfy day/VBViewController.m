@@ -15,6 +15,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
+#import "VBLastVideoViewController.h"
+
 #import "CTAssetsPickerController.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
 
@@ -54,8 +56,22 @@
     _takePhoto.layer.borderWidth = 1.0;
     _takePhoto.layer.cornerRadius = 10;
     
-//    _fpsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
     _fps = 25;
+    
+    NSString *moviePath = [[VBPhotoToVideo documentsDirectory] stringByAppendingPathComponent:VB_MOVIE_FILENAME];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:moviePath]) {
+        
+        UIBarButtonItem *lastMovieItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"VBMovie"]
+                                                                          style:UIBarButtonItemStylePlain
+                                                                         target:self action:@selector(lastMovie:)];
+        
+        NSMutableArray * array = [NSMutableArray arrayWithArray:self.toolbarItems];
+        [array insertObject:lastMovieItem atIndex:5];
+        [array insertObject:[array firstObject] atIndex:6];
+        
+        self.toolbarItems = array;
+    }
+    
     
     self.mainToolBarItems = self.toolbarItems;
     
@@ -64,11 +80,15 @@
     [_selfyGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
 }
 
-- (void) fpsUpdate:(UISlider*)slider {
-        _fps = slider.value;
-    [_fpsLabel setText:[NSString stringWithFormat:@"Fps: %d", _fps]];
-}
+#pragma mark - show album
 
+- (ALAssetsLibrary *) assetsLibrary {
+    if (_assetsLibrary) {
+        return _assetsLibrary;
+    }
+    _assetsLibrary = [[ALAssetsLibrary alloc] init];
+    return _assetsLibrary;
+}
 
 - (void) checkAlbumAvailability {
 
@@ -145,14 +165,8 @@
     }
 }
 
-- (void) latest {
-    NSString *path = [[VBPhotoToVideo documentsDirectory] stringByAppendingPathComponent:@"movie.mp4"];
-    
-    MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:path]];
 
-    [_vc presentMoviePlayerViewControllerAnimated:player];
-}
-
+#pragma mark - create selfie video
 
 - (IBAction) createSelfyVideo:(id)sender {
     
@@ -210,7 +224,7 @@
         }
     }];
 
-    NSString *path = [[VBPhotoToVideo documentsDirectory] stringByAppendingPathComponent:@"movie.mp4"];
+    NSString *path = [[VBPhotoToVideo documentsDirectory] stringByAppendingPathComponent:VB_MOVIE_FILENAME];
 
     _photoToVideo = [[VBPhotoToVideo alloc] init];
     
@@ -225,7 +239,7 @@
     [_photoToVideo setComplitionBlock:^(BOOL done) {
         if (done) {
             [b_controller cancelSelection];
-            [b_controller presentVideo];
+            [b_controller lastMovie:nil];
         }
     }];
     
@@ -251,7 +265,6 @@
     
 }
 
-
 - (void) cancelSelection {
     _photoToVideo.stopPhotoToVideo = YES;
     
@@ -266,7 +279,11 @@
 }
 
 
-- (void)assetsPickerController:(CTAssetsPickerController *)picker didSelectAsset:(ALAsset *)asset {
+
+
+#pragma mark -  CTAssetsPickerControllerDelegate
+
+- (void) assetsPickerController:(CTAssetsPickerController *)picker didSelectAsset:(ALAsset *)asset {
     if (_firstAsset == nil) {
         _firstAsset = asset;
         _vc.navigationItem.prompt = @"Please select last photo of range.";
@@ -277,7 +294,7 @@
     }
 }
 
-- (void)assetsPickerController:(CTAssetsPickerController *)picker didDeselectAsset:(ALAsset *)asset {
+- (void) assetsPickerController:(CTAssetsPickerController *)picker didDeselectAsset:(ALAsset *)asset {
     if (asset == _firstAsset) {
         _firstAsset = nil;
         _vc.navigationItem.prompt = @"Please select first photo of range.";
@@ -288,59 +305,19 @@
     }
 }
 
+- (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets {}
 
+#pragma mark - Last Video
 
-- (void) presentVideo {
+- (void) lastMovie:(id)sender {
+    VBLastVideoViewController *controller = [[VBLastVideoViewController alloc] initWithNibName:@"VBLastVideoViewController"
+                                                                                        bundle:nil];
+    [controller setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:controller animated:YES];
     
-    NSString *path = [[VBPhotoToVideo documentsDirectory] stringByAppendingPathComponent:@"movie.mp4"];
-    
-    NSArray * activityItems = @[@"My iSelfie video. #selfie #iselfie @iSelfieApp", [NSURL fileURLWithPath:path]];
-    
-    
-//    NSArray *activities = @[[[VBYoutubeActivity alloc] init]];
-    
-    UIActivityViewController *activity = [[UIActivityViewController alloc] initWithActivityItems:activityItems
-                                      applicationActivities:nil];
-    
-            [activity setCompletionHandler:^(NSString *activityType, BOOL completed) {
-            }];
-    
-    [self presentViewController:activity animated:YES completion:nil];
 }
 
 
-- (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo; {
-    if (error) {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: @"Save failed"
-                              message: @"Failed to save image/video"
-                              delegate: nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        
-        [alert show];
-//        [alert release];
-    }
-    NSLog(@"dismiss");
-//    [self.navigationController popViewControllerAnimated:YES];
-}
-
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (ALAssetsLibrary *)assetsLibrary
-{
-    if (_assetsLibrary) {
-        return _assetsLibrary;
-    }
-    _assetsLibrary = [[ALAssetsLibrary alloc] init];
-    return _assetsLibrary;
-}
 
 #pragma mark - Settings
 
@@ -460,6 +437,13 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     });
 }
 
+#pragma mark -
+
+- (void) didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 
 @end

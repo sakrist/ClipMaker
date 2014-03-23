@@ -17,4 +17,7 @@
 #import "Flurry.h"
 
 #define FLURRY_APP_ID @"F289PXQ2HZPK3JXXX5XS"
+
+#define VB_MOVIE_FILENAME @"movie.mp4"
+
 #endif

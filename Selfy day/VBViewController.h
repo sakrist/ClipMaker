@@ -14,7 +14,7 @@ extern NSString * const BannerViewActionDidFinish;
 #import <UIKit/UIKit.h>
 #import "CTAssetsPickerController.h"
 
-@interface VBViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, CTAssetsPickerControllerDelegate>
+@interface VBViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, CTAssetsPickerControllerDelegate, MPMediaPickerControllerDelegate>
 
 
 @property (nonatomic, weak) IBOutlet UIButton *takePhoto;
