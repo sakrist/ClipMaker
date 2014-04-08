@@ -23,6 +23,6 @@
 
 - (void) finishing;
 
-+ (void) addAudio:(NSURL*)audioURL toVideo:(NSString*)videoFilename;
++ (void) addAudio:(NSURL*)audioURL toVideo:(NSString*)videoFilename complition:(void(^)(void))block;
 
 @end

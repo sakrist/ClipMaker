@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D228545618D315A500EFFE31"
                BuildableName = "iSelfie.app"
-               BlueprintName = "iSelfie"
-               ReferencedContainer = "container:iSelfie.xcodeproj">
+               BlueprintName = "Selfie video"
+               ReferencedContainer = "container:Selfie video.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D228547718D315A500EFFE31"
                BuildableName = "iSelfieTests.xctest"
-               BlueprintName = "iSelfieTests"
-               ReferencedContainer = "container:iSelfie.xcodeproj">
+               BlueprintName = "Selfie videoTests"
+               ReferencedContainer = "container:Selfie video.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D228545618D315A500EFFE31"
             BuildableName = "iSelfie.app"
-            BlueprintName = "iSelfie"
-            ReferencedContainer = "container:iSelfie.xcodeproj">
+            BlueprintName = "Selfie video"
+            ReferencedContainer = "container:Selfie video.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D228545618D315A500EFFE31"
             BuildableName = "iSelfie.app"
-            BlueprintName = "iSelfie"
-            ReferencedContainer = "container:iSelfie.xcodeproj">
+            BlueprintName = "Selfie video"
+            ReferencedContainer = "container:Selfie video.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D228545618D315A500EFFE31"
             BuildableName = "iSelfie.app"
-            BlueprintName = "iSelfie"
-            ReferencedContainer = "container:iSelfie.xcodeproj">
+            BlueprintName = "Selfie video"
+            ReferencedContainer = "container:Selfie video.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

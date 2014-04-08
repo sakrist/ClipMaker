@@ -312,6 +312,8 @@
         UIImageOrientation orientation = (UIImageOrientation)[[asset valueForProperty:@"ALAssetPropertyOrientation"] intValue];
         
         CVPixelBufferRef buffer = [VBPhotoToVideo pixelBufferFromCGImage:iref orientation:orientation preferSize:size];
+        
+        
         BOOL result = [_adaptor appendPixelBuffer:buffer withPresentationTime:presentTime];
         
         
@@ -323,6 +325,8 @@
         
         if(buffer) {
             CVBufferRelease(buffer);
+        } else {
+            NSLog(@"buffer is nil");
         }
         
         return YES;
@@ -344,6 +348,7 @@
     [_videoWriter finishWritingWithCompletionHandler:^{
 
     }];
+    NSLog(@"finishing 2");
     
     CVPixelBufferPoolRelease(self.adaptor.pixelBufferPool);
     self.videoWriter = nil;
@@ -351,7 +356,9 @@
     self.arrayAssets = nil;
     self.writerInput = nil;
     
-    __weak VBPhotoToVideo *bself = self;
+    NSLog(@"finishing 3");
+    
+    __block VBPhotoToVideo *bself = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [bself performComplition];
     });
@@ -359,6 +366,7 @@
 }
 
 - (void) performComplition {
+     NSLog(@"performComplition");
     if (_complitionBlock) {
         _complitionBlock(!_stopPhotoToVideo);
         _complitionBlock = nil;
@@ -370,7 +378,9 @@
 
 //- (void) addAudio:(NSString*)audioFilename toVideo:(NSString*)videoFilename {
 
-+ (void) addAudio:(NSURL*)audioURL toVideo:(NSString*)videoFilename {
+typedef void (^simpleblock)(void);
+
++ (void) addAudio:(NSURL*)audioURL toVideo:(NSString*)videoFilename complition:(void(^)(void))block {
         
     
     
@@ -415,8 +425,16 @@
     assetExport.outputFileType = @"public.mpeg-4";
     assetExport.outputURL = outputFileUrl;
     
+    __block simpleblock bblock = block;
+    
     [assetExport exportAsynchronouslyWithCompletionHandler: ^(void) {
-
+        [[NSFileManager defaultManager] removeItemAtURL:videoURL error:nil];
+        [[NSFileManager defaultManager] moveItemAtURL:assetExport.outputURL
+                                                toURL:videoURL error:nil];
+        if (bblock) {
+            bblock();
+            bblock = nil;
+        }
     }];
 }
 

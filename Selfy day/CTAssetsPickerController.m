@@ -654,6 +654,9 @@ static const CGSize kPopoverContentSize = {320, 480};
         }
     };
     
+    self.tableView.backgroundView = nil;
+    
+    
     ALAssetsLibraryAccessFailureBlock failureBlock = ^(NSError *error)
     {
         [self showNotAllowed];
@@ -808,10 +811,12 @@ static const CGSize kPopoverContentSize = {320, 480};
 
 - (void)reloadData
 {
-    if (self.groups.count > 0)
+    self.tableView.backgroundView = nil;
+    if (self.groups.count > 0) {
         [self.tableView reloadData];
-    else
+    } else {
         [self showNoAssets];
+    }
 }
 
 
@@ -905,6 +910,11 @@ static const CGSize kPopoverContentSize = {320, 480};
 
 
 #pragma mark - CTAssetsViewController
+
+@interface CTAssetsViewController ()
+@property (strong) UIView *bg;
+
+@end
 
 @implementation CTAssetsViewController
 
@@ -1114,8 +1124,9 @@ NSString * const CTAssetsSupplementaryViewIdentifier = @"CTAssetsSupplementaryVi
 {
     if (self.assets.count > 0)
     {
+        NSLog(@"has assets");
+        [_bg setHidden:YES];
         [self.collectionView reloadData];
-
         if (CGPointEqualToPoint(self.collectionView.contentOffset, CGPointZero))
             [self.collectionView setContentOffset:CGPointMake(0, self.collectionViewLayout.collectionViewContentSize.height)];
     }
@@ -1130,7 +1141,12 @@ NSString * const CTAssetsSupplementaryViewIdentifier = @"CTAssetsSupplementaryVi
 
 - (void)showNoAssets
 {
-    self.collectionView.backgroundView = [self.picker noAssetsView];
+    NSLog(@"set showNoAssets");
+    if (_bg == nil) {
+        _bg = [self.picker noAssetsView];
+    }
+
+    self.collectionView.backgroundView = _bg;
 }
 
 

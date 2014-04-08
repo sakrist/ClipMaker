@@ -37,6 +37,7 @@
 @property (nonatomic, copy) NSArray *assets;
 
 @property (nonatomic, strong) NSArray *mainToolBarItems;
+@property (nonatomic, strong) NSArray *mainToolBarItemsWithMovie;
 
 
 @property (nonatomic, weak) ALAsset *firstAsset;
@@ -57,9 +58,12 @@
     _takePhoto.layer.cornerRadius = 10;
     
     _fps = 25;
+    self.navigationController.delegate = self;
+    
+    self.mainToolBarItems = [NSMutableArray arrayWithArray:self.toolbarItems];
     
     NSString *moviePath = [[VBPhotoToVideo documentsDirectory] stringByAppendingPathComponent:VB_MOVIE_FILENAME];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:moviePath]) {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:moviePath] && !_mainToolBarItemsWithMovie) {
         
         UIBarButtonItem *lastMovieItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"VBMovie"]
                                                                           style:UIBarButtonItemStylePlain
@@ -69,15 +73,33 @@
         [array insertObject:lastMovieItem atIndex:5];
         [array insertObject:[array firstObject] atIndex:6];
         
-        self.toolbarItems = array;
+        self.mainToolBarItemsWithMovie = array;
+        self.toolbarItems = self.mainToolBarItemsWithMovie;
     }
-    
-    
-    self.mainToolBarItems = self.toolbarItems;
     
     [self checkAlbumAvailability];
     
     [_selfyGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController
+      willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if (viewController == self || _vc == viewController) {
+        [self viewWillAppear:animated];
+    }
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (_mainToolBarItemsWithMovie && _mainToolBarItems) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:[VBPhotoToVideo documentsPath:VB_MOVIE_FILENAME]]) {
+            _vc.toolbarItems = _mainToolBarItemsWithMovie;
+        } else {
+            _vc.toolbarItems = _mainToolBarItems;
+        }
+    }
+   
 }
 
 #pragma mark - show album
@@ -224,9 +246,11 @@
         }
     }];
 
-    NSString *path = [[VBPhotoToVideo documentsDirectory] stringByAppendingPathComponent:VB_MOVIE_FILENAME];
+    NSString *path = [VBPhotoToVideo documentsPath:VB_MOVIE_FILENAME];
 
-    _photoToVideo = [[VBPhotoToVideo alloc] init];
+    if (_photoToVideo == nil) {
+        _photoToVideo = [[VBPhotoToVideo alloc] init];
+    }
     
     __weak VBPhotoToVideo *b_photoToVideo = _photoToVideo;
     __weak UIProgressView *b_progressBar = progressBar;
@@ -240,6 +264,9 @@
         if (done) {
             [b_controller cancelSelection];
             [b_controller lastMovie:nil];
+        } else {
+            [b_controller cancelSelection];
+            [[[UIAlertView alloc] initWithTitle:nil message:@"Error while creating video, please try again" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
         }
     }];
     
@@ -271,11 +298,17 @@
     _vc.navigationItem.prompt = nil;
     _vc.navigationItem.rightBarButtonItem = nil;
     _vc.collectionView.allowsSelection = NO;
-    _vc.toolbarItems = _mainToolBarItems;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[VBPhotoToVideo documentsPath:VB_MOVIE_FILENAME]]) {
+        _vc.toolbarItems = _mainToolBarItemsWithMovie;
+    } else {
+        _vc.toolbarItems = _mainToolBarItems;
+    }
     
     _firstAsset = nil;
     _lastAsset = nil;
-    [_vc.navigationController setToolbarHidden:NO animated:YES];
+    if (_vc.navigationController.toolbarHidden) {
+        [_vc.navigationController setToolbarHidden:NO animated:YES];
+    }
 }
 
 
@@ -310,13 +343,24 @@
 #pragma mark - Last Video
 
 - (void) lastMovie:(id)sender {
+    NSLog(@"push");
+
     VBLastVideoViewController *controller = [[VBLastVideoViewController alloc] initWithNibName:@"VBLastVideoViewController"
                                                                                         bundle:nil];
+    controller.title = @"Created Video";
     [controller setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:controller animated:YES];
     
 }
 
+- (void) relastVideo {
+    [self.navigationController popViewControllerAnimated:NO];
+    VBLastVideoViewController *controller = [[VBLastVideoViewController alloc] initWithNibName:@"VBLastVideoViewController"
+                                                                                        bundle:nil];
+    controller.title = @"Created Video";
+    [controller setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:controller animated:NO];
+}
 
 
 #pragma mark - Settings
@@ -345,7 +389,10 @@
     // Generate picker
     UIImagePickerController * picker = [[UIImagePickerController alloc] init];
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    picker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"frontCamera"]) {
+        picker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+    }
     // Displays a control that allows the user to choose picture or
     //   movie capture, if both are available:
     //picker.mediaTypes =
@@ -362,17 +409,14 @@
 #pragma mark - UIImagePickerController Delegate
 
 // For responding to the user tapping Cancel.
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
     picker.delegate = nil;
     picker          = nil;
 }
 
 // For responding to the user accepting a newly-captured picture or movie
-- (void)imagePickerController:(UIImagePickerController *)picker
-didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     // Dismiss image picker view
     [self imagePickerControllerDidCancel:picker];
     
@@ -439,8 +483,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 #pragma mark -
 
-- (void) didReceiveMemoryWarning
-{
+- (void) didReceiveMemoryWarning {
+    
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

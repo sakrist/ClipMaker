@@ -6,6 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VBLastVideoViewController">
             <connections>
+                <outlet property="tableView" destination="0rw-5Z-Xf4" id="GHc-Ou-5yS"/>
+                <outlet property="videoView" destination="CwW-I7-sPJ" id="rcS-GD-yWi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,38 +16,34 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZH-YZ-2PX">
-                    <rect key="frame" x="98" y="142" width="114" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Add Audio Track">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0rw-5Z-Xf4">
+                    <rect key="frame" x="0.0" y="286" width="320" height="282"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="282" id="ErD-Lw-zB1"/>
+                    </constraints>
+                    <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                     <connections>
-                        <action selector="addAudioTrack:" destination="-1" eventType="touchUpInside" id="gNb-E6-Kqn"/>
+                        <outlet property="dataSource" destination="-1" id="BM9-A4-Ts1"/>
+                        <outlet property="delegate" destination="-1" id="jOT-jO-eLe"/>
                     </connections>
-                </button>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUI-ad-poA">
-                    <rect key="frame" x="98" y="284" width="83" height="30"/>
+                </tableView>
+                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CwW-I7-sPJ">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="283"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Share Video">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="shareVideo:" destination="-1" eventType="touchUpInside" id="SF0-gu-3vw"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7xo-te-DrX">
-                    <rect key="frame" x="98" y="218" width="160" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Share Video with Audio">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="shareVideo:" destination="-1" eventType="touchUpInside" id="Kjy-qx-CuE"/>
-                    </connections>
-                </button>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="CwW-I7-sPJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="0gq-NN-VUV"/>
+                <constraint firstAttribute="trailing" secondItem="0rw-5Z-Xf4" secondAttribute="trailing" id="IBd-e0-QVZ"/>
+                <constraint firstItem="0rw-5Z-Xf4" firstAttribute="top" secondItem="CwW-I7-sPJ" secondAttribute="bottom" constant="3" id="OjD-vH-bCi"/>
+                <constraint firstItem="CwW-I7-sPJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Qga-jD-fSk"/>
+                <constraint firstItem="0rw-5Z-Xf4" firstAttribute="trailing" secondItem="CwW-I7-sPJ" secondAttribute="trailing" id="Zc4-fZ-IBG"/>
+                <constraint firstItem="0rw-5Z-Xf4" firstAttribute="leading" secondItem="CwW-I7-sPJ" secondAttribute="leading" id="eZl-pN-zOd"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

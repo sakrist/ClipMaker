@@ -33,6 +33,14 @@
         notification.soundName = UILocalNotificationDefaultSoundName;
         [[UIApplication sharedApplication] setScheduledLocalNotifications:[NSArray arrayWithObject:notification]];
     }
+    
+    // 1.1
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"version"] isEqualToString:@"1.0.1"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"frontCamera"];
+        [[NSUserDefaults standardUserDefaults] setObject:@"1.1" forKey:@"version"];
+    }
+
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [Flurry startSession:FLURRY_APP_ID];

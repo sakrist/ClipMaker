@@ -24,7 +24,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="erh-zO-y5P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--View Controller - iSelfie-->
+        <!--View Controller - Selfie video-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="VBViewController" sceneMemberID="viewController">
@@ -43,7 +43,7 @@
                                 <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please go to Settings > Privacy > Photos to allow iSelfie save photos to your library." textAlignment="center" lineBreakMode="characterWrap" numberOfLines="4" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="231" translatesAutoresizingMaskIntoConstraints="NO" id="r89-Zb-uYf">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please go to Settings > Privacy > Photos to allow Selfie video save photos to your library." textAlignment="center" lineBreakMode="characterWrap" numberOfLines="4" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="231" translatesAutoresizingMaskIntoConstraints="NO" id="r89-Zb-uYf">
                                 <rect key="frame" x="45" y="197" width="231" height="186"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -84,7 +84,7 @@
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="eIH-Bj-cAS"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="iSelfie" id="jN3-cd-Klb"/>
+                    <navigationItem key="navigationItem" title="Selfie video" id="jN3-cd-Klb"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

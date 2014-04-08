@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:iSelfie.xcodeproj">
+      location = "self:Selfie video.xcodeproj">
    </FileRef>
 </Workspace>

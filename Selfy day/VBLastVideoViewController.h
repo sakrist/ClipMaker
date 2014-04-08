@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VBLastVideoViewController : UIViewController
+@interface VBLastVideoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak) IBOutlet UITableView *tableView;
+@property (weak) IBOutlet UIView *videoView;
 
 @end

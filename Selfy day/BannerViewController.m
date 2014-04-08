@@ -63,13 +63,13 @@ NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
 {
     [super viewDidLoad];
     
-    NSInteger runs = [[NSUserDefaults standardUserDefaults] integerForKey:@"runCount"];
+//    NSInteger runs = [[NSUserDefaults standardUserDefaults] integerForKey:@"runCount"];
     
     _contentController = self.childViewControllers[0];
     
-    if (runs < 15) {
-        return;
-    }
+//    if (runs < 15) {
+//        return;
+//    }
     
     
     // on iOS 6 ADBannerView introduces a new initializer, use it when available

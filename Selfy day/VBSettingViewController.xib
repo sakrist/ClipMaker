@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VBSettingViewController">
             <connections>
+                <outlet property="cameraSwitch" destination="xKK-RO-Jz8" id="ujb-on-Hak"/>
                 <outlet property="datePicker" destination="bkK-xx-BIP" id="hdU-y5-o7y"/>
                 <outlet property="fpsLabel" destination="He1-ez-KrW" id="DHn-YU-HTQ"/>
                 <outlet property="notificatioSwitch" destination="sOv-EV-WUe" id="F34-3l-oIl"/>
@@ -31,7 +32,7 @@
                             </connections>
                         </slider>
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sOv-EV-WUe">
-                            <rect key="frame" x="251" y="101" width="51" height="31"/>
+                            <rect key="frame" x="251" y="126" width="51" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <connections>
                                 <action selector="enableNotification:" destination="-1" eventType="valueChanged" id="BQ6-hJ-1Ov"/>
@@ -44,14 +45,14 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notify every day:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWz-Y6-WHj">
-                            <rect key="frame" x="29" y="106" width="144" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notify every day" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWz-Y6-WHj">
+                            <rect key="frame" x="29" y="131" width="144" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="bkK-xx-BIP">
-                            <rect key="frame" x="0.0" y="140" width="320" height="162"/>
+                            <rect key="frame" x="0.0" y="165" width="320" height="162"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <date key="date" timeIntervalSinceReferenceDate="416746963.28293198">
@@ -83,15 +84,28 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </connections>
                         </datePicker>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRz-MA-xET">
-                            <rect key="frame" x="120" y="366" width="81" height="30"/>
+                            <rect key="frame" x="42" y="422" width="237" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Twitter">
+                            <state key="normal" title="Twitter for support and information">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="openSource:" destination="-1" eventType="touchUpInside" id="vGf-zN-3d0"/>
                             </connections>
                         </button>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Open front camera" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FX-o2-i9W">
+                            <rect key="frame" x="29" y="92" width="144" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xKK-RO-Jz8">
+                            <rect key="frame" x="251" y="87" width="51" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="cameraSwitchChange:" destination="-1" eventType="valueChanged" id="MsO-B9-b68"/>
+                            </connections>
+                        </switch>
                     </subviews>
                 </scrollView>
             </subviews>

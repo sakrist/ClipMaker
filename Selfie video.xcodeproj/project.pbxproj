@@ -61,23 +61,23 @@
 		D21FD1DF18D7A11000523FD7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D21FD2D918D865E300523FD7 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		D21FD2DA18D865E300523FD7 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
-		D228545718D315A500EFFE31 /* iSelfie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSelfie.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D228545718D315A500EFFE31 /* Selfie video.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Selfie video.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D228545A18D315A500EFFE31 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D228545C18D315A500EFFE31 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D228545E18D315A500EFFE31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		D228546218D315A500EFFE31 /* iSelfie-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iSelfie-Info.plist"; sourceTree = "<group>"; };
+		D228546218D315A500EFFE31 /* Selfie video-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Selfie video-Info.plist"; sourceTree = "<group>"; };
 		D228546418D315A500EFFE31 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D228546618D315A500EFFE31 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D228546818D315A500EFFE31 /* iSelfie-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iSelfie-Prefix.pch"; sourceTree = "<group>"; };
+		D228546818D315A500EFFE31 /* Selfie video-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Selfie video-Prefix.pch"; sourceTree = "<group>"; };
 		D228546918D315A500EFFE31 /* VBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VBAppDelegate.h; sourceTree = "<group>"; };
 		D228546A18D315A500EFFE31 /* VBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VBAppDelegate.m; sourceTree = "<group>"; };
 		D228546D18D315A500EFFE31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D228546F18D315A500EFFE31 /* VBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VBViewController.h; sourceTree = "<group>"; };
 		D228547018D315A500EFFE31 /* VBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VBViewController.m; sourceTree = "<group>"; };
 		D228547218D315A500EFFE31 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D228547818D315A500EFFE31 /* iSelfieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iSelfieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D228547818D315A500EFFE31 /* Selfie videoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Selfie videoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D228547918D315A500EFFE31 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		D228548118D315A500EFFE31 /* iSelfieTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iSelfieTests-Info.plist"; sourceTree = "<group>"; };
+		D228548118D315A500EFFE31 /* Selfie videoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Selfie videoTests-Info.plist"; sourceTree = "<group>"; };
 		D228548318D315A500EFFE31 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D228548518D315A500EFFE31 /* Selfy_dayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Selfy_dayTests.m; sourceTree = "<group>"; };
 		D228548F18D339FE00EFFE31 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -159,8 +159,8 @@
 		D228545818D315A500EFFE31 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D228545718D315A500EFFE31 /* iSelfie.app */,
-				D228547818D315A500EFFE31 /* iSelfieTests.xctest */,
+				D228545718D315A500EFFE31 /* Selfie video.app */,
+				D228547818D315A500EFFE31 /* Selfie videoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -219,10 +219,10 @@
 			children = (
 				D261A75D18D9F026004A5DCC /* Flurry.h */,
 				D261A75618D9E0AF004A5DCC /* ipsums.plist */,
-				D228546218D315A500EFFE31 /* iSelfie-Info.plist */,
+				D228546218D315A500EFFE31 /* Selfie video-Info.plist */,
 				D228546318D315A500EFFE31 /* InfoPlist.strings */,
 				D228546618D315A500EFFE31 /* main.m */,
-				D228546818D315A500EFFE31 /* iSelfie-Prefix.pch */,
+				D228546818D315A500EFFE31 /* Selfie video-Prefix.pch */,
 				D21FD2D918D865E300523FD7 /* UIPlaceHolderTextView.h */,
 				D21FD2DA18D865E300523FD7 /* UIPlaceHolderTextView.m */,
 			);
@@ -241,7 +241,7 @@
 		D228548018D315A500EFFE31 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D228548118D315A500EFFE31 /* iSelfieTests-Info.plist */,
+				D228548118D315A500EFFE31 /* Selfie videoTests-Info.plist */,
 				D228548218D315A500EFFE31 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -261,9 +261,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D228545618D315A500EFFE31 /* iSelfie */ = {
+		D228545618D315A500EFFE31 /* Selfie video */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D228548918D315A500EFFE31 /* Build configuration list for PBXNativeTarget "iSelfie" */;
+			buildConfigurationList = D228548918D315A500EFFE31 /* Build configuration list for PBXNativeTarget "Selfie video" */;
 			buildPhases = (
 				D228545318D315A500EFFE31 /* Sources */,
 				D228545418D315A500EFFE31 /* Frameworks */,
@@ -273,14 +273,14 @@
 			);
 			dependencies = (
 			);
-			name = iSelfie;
+			name = "Selfie video";
 			productName = "Selfy day";
-			productReference = D228545718D315A500EFFE31 /* iSelfie.app */;
+			productReference = D228545718D315A500EFFE31 /* Selfie video.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D228547718D315A500EFFE31 /* iSelfieTests */ = {
+		D228547718D315A500EFFE31 /* Selfie videoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D228548C18D315A500EFFE31 /* Build configuration list for PBXNativeTarget "iSelfieTests" */;
+			buildConfigurationList = D228548C18D315A500EFFE31 /* Build configuration list for PBXNativeTarget "Selfie videoTests" */;
 			buildPhases = (
 				D228547418D315A500EFFE31 /* Sources */,
 				D228547518D315A500EFFE31 /* Frameworks */,
@@ -291,9 +291,9 @@
 			dependencies = (
 				D228547E18D315A500EFFE31 /* PBXTargetDependency */,
 			);
-			name = iSelfieTests;
+			name = "Selfie videoTests";
 			productName = "Selfy dayTests";
-			productReference = D228547818D315A500EFFE31 /* iSelfieTests.xctest */;
+			productReference = D228547818D315A500EFFE31 /* Selfie videoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -314,7 +314,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D228545218D315A500EFFE31 /* Build configuration list for PBXProject "iSelfie" */;
+			buildConfigurationList = D228545218D315A500EFFE31 /* Build configuration list for PBXProject "Selfie video" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -327,8 +327,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D228545618D315A500EFFE31 /* iSelfie */,
-				D228547718D315A500EFFE31 /* iSelfieTests */,
+				D228545618D315A500EFFE31 /* Selfie video */,
+				D228547718D315A500EFFE31 /* Selfie videoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -388,7 +388,7 @@
 /* Begin PBXTargetDependency section */
 		D228547E18D315A500EFFE31 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D228545618D315A500EFFE31 /* iSelfie */;
+			target = D228545618D315A500EFFE31 /* Selfie video */;
 			targetProxy = D228547D18D315A500EFFE31 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -455,6 +455,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "431E6926-C54F-4235-A68B-887C82A5DD2C";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -475,7 +476,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -486,6 +488,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "431E6926-C54F-4235-A68B-887C82A5DD2C";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -500,19 +503,19 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Selfy day/iSelfie-Prefix.pch";
+				GCC_PREFIX_HEADER = "Selfy day/Selfie video-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"\"$(SRCROOT)/Selfy day/GData\"/**",
 				);
-				INFOPLIST_FILE = "Selfy day/iSelfie-Info.plist";
+				INFOPLIST_FILE = "Selfy day/Selfie video-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flurry",
 				);
-				PRODUCT_NAME = iSelfie;
+				PRODUCT_NAME = "Selfie video";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -523,23 +526,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Selfy day/iSelfie-Prefix.pch";
+				GCC_PREFIX_HEADER = "Selfy day/Selfie video-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"\"$(SRCROOT)/Selfy day/GData\"/**",
 				);
-				INFOPLIST_FILE = "Selfy day/iSelfie-Info.plist";
+				INFOPLIST_FILE = "Selfy day/Selfie video-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flurry",
 				);
-				PRODUCT_NAME = iSelfie;
+				PRODUCT_NAME = "Selfie video";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -560,8 +563,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Selfy dayTests/iSelfieTests-Info.plist";
-				PRODUCT_NAME = iSelfieTests;
+				INFOPLIST_FILE = "Selfy dayTests/Selfie videoTests-Info.plist";
+				PRODUCT_NAME = "Selfie videoTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -578,8 +581,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Selfy day/Selfy day-Prefix.pch";
-				INFOPLIST_FILE = "Selfy dayTests/iSelfieTests-Info.plist";
-				PRODUCT_NAME = iSelfieTests;
+				INFOPLIST_FILE = "Selfy dayTests/Selfie videoTests-Info.plist";
+				PRODUCT_NAME = "Selfie videoTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -588,7 +591,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D228545218D315A500EFFE31 /* Build configuration list for PBXProject "iSelfie" */ = {
+		D228545218D315A500EFFE31 /* Build configuration list for PBXProject "Selfie video" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D228548718D315A500EFFE31 /* Debug */,
@@ -597,7 +600,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D228548918D315A500EFFE31 /* Build configuration list for PBXNativeTarget "iSelfie" */ = {
+		D228548918D315A500EFFE31 /* Build configuration list for PBXNativeTarget "Selfie video" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D228548A18D315A500EFFE31 /* Debug */,
@@ -606,7 +609,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D228548C18D315A500EFFE31 /* Build configuration list for PBXNativeTarget "iSelfieTests" */ = {
+		D228548C18D315A500EFFE31 /* Build configuration list for PBXNativeTarget "Selfie videoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D228548D18D315A500EFFE31 /* Debug */,

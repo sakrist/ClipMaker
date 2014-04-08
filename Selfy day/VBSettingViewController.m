@@ -33,6 +33,8 @@
         [_datePicker setDate:date];
     }
     
+    [_cameraSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"frontCamera"]];
+    
     [_notificatioSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"enableNotify"]];
     [_sliderFps setValue:[[NSUserDefaults standardUserDefaults] floatForKey:@"fps"]];
     [_fpsLabel setText:[NSString stringWithFormat:@"Pictures per second: %d", (int)_sliderFps.value]];
@@ -97,6 +99,10 @@
         [[UIApplication sharedApplication] setScheduledLocalNotifications:nil];
     }
     
+}
+
+- (IBAction) cameraSwitchChange:(UISwitch*)sender {
+    [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:@"frontCamera"];
 }
 
 

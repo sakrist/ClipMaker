@@ -10,6 +10,8 @@
 
 @interface VBSettingViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UISwitch *cameraSwitch;
+
 @property (nonatomic, weak) IBOutlet UILabel *fpsLabel;
 
 @property (nonatomic, weak) IBOutlet UISlider *sliderFps;
@@ -26,5 +28,7 @@
 - (IBAction) changeTime:(id)sender;
 
 - (IBAction) enableNotification:(UISwitch*)sender;
+
+- (IBAction) cameraSwitchChange:(UISwitch*)sender;
 
 @end
